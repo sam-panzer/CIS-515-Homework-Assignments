@@ -22,10 +22,11 @@
   \end{itemize}
 
 \subsection{Problem B2}families
-(1) Let $U = (u_1,\dots,u_m)$ and $V = (u_1,\dots,u_m)$ be two families of
+\subsubsection{(1)}
+Let $U = (u_1,\dots,u_m)$ and $V = (u_1,\dots,u_m)$ be two families of
 vectors in $E,$ such that $u$ is linearly independent, $v = Au,$ and $A$
 is a square matrix with a nonzero trace.
-Suppose, towards a contradiction, that 
+Suppose, with the goal of showing that $\lambda_i = 0\, \forall i,$ that 
 $\displaystyle{\sum_{i=1}^\infty \lambda_i v_i = 0}.$ This is equivalent to
 \[ \sum_{i=1}^m\lambda_i\left( \sum_{j=1}^m a_{i,j}u_j \right) = 
    \sum_{j=1}^m u_j\left( \sum_{i=1}^m \lambda_i a_{i,j} \right) = 0.
@@ -33,15 +34,20 @@ $\displaystyle{\sum_{i=1}^\infty \lambda_i v_i = 0}.$ This is equivalent to
 Since $U$ is linearly independent, this implies that the inner sum is zero for
 each $j.$ That is,
 $\displaystyle{ \sum_{i=1}^m \lambda_i a_{i,j} = 0, \,\forall j }$
+Since $a_{i,j} = 0$ for all $i > j,$ all terms with $j < i$ are zero. We can
+rewrite this sum as
+$\displaystyle{ \sum_{i=1}^j \lambda_i a_{i,j} = 0, \,\forall j }$
 
-We can now show by induction that
+We can now show by induction on $j$ that $\lambda_j = 0$.
+In the base case, $j = 1,$ so the sum evaluates to $\lambda_1 \cdot a_{1,1}$.
+Since $a_{k,k} \neq 0\, \forall k$ by assumption, $\lambda_1 = 0$.
 
-The base case is trivial, as $m = 1$ implies that $V = (v_1),$ which is linearly
-independent by definition.
-In the inductive case, we assume that the desired result holds for any family
-of size $m,$ and we try to show it for families of size $m + 1.$
+For the inductive case, we assume that $\lambda_k = 0\, \forall k < j.$ Thus
+the sum evaluates to $\lambda_j a_{j,j} = 0$ which implies that $\lambda_j=0$.
+We conclude that $\lambda_j = 0$ for all $1 \leq j \leq m,$ which implies that
+$U$ is linearly independent, as desired.
 
-\medskip(2)
+\subsubsection{(2)}
 $A$ is an upper-triangular matrix with entries $a_{i,j},$ and the proof proceeds
 by induction.
 
