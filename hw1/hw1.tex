@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+
+\setcounter{secnumdepth}{0}
+\begin{document}
+\begin{center}CIS 515 --- HW1\\Sam Panzer\end{center}
+\subsection{Problem B1}
+  Suppose $v \in V,$ since $V$ is nonempty. Then $0 = v + (-v)$, where $-v$ is $v$'s additive inverse.
+\begin{itemize}
+  \item $\alpha \cdot 0 = 0$:\\
+    $\alpha\cdot 0 = \alpha\cdot(0 + 0) = \alpha\cdot 0 + \alpha\cdot 0,$ which
+    implies that $\alpha\cdot 0 = 0.$
+  \item $0\cdot v = 0$: \\
+    $0 \cdot v = (0 + 0)\cdot v = 0 \cdot v + 0 \cdot v,$ which again implies
+    that $0 \cdot v = 0.$
+  \item $\alpha \cdot (-v) = -(\alpha \cdot v) = (-\alpha) \cdot v$:\\
+  $\alpha \cdot (-v) + \alpha \cdot v = \alpha ((-v) + v) = \alpha \cdot 0 = 0$,
+  thus showing that $\alpha \cdot (-v) =  -(\alpha \cdot v).$ Similarly,
+  $(-\alpha) \cdot v + \alpha \cdot v = (-\alpha + \alpha)\cdot v =
+  0 \cdot v = 0$.
+  \end{itemize}
+
+\subsection{Problem B2}families
+(1) Let $U = (u_1,\dots,u_m)$ and $V = (u_1,\dots,u_m)$ be two families of
+vectors in $E,$ such that $u$ is linearly independent, $v = Au,$ and $A$
+is a square matrix with a nonzero trace.
+Suppose, towards a contradiction, that 
+$\displaystyle{\sum_{i=1}^\infty \lambda_i v_i = 0}.$ This is equivalent to
+\[ \sum_{i=1}^m\lambda_i\left( \sum_{j=1}^m a_{i,j}u_j \right) = 
+   \sum_{j=1}^m u_j\left( \sum_{i=1}^m \lambda_i a_{i,j} \right) = 0.
+\]
+Since $U$ is linearly independent, this implies that the inner sum is zero for
+each $j.$ That is,
+$\displaystyle{ \sum_{i=1}^m \lambda_i a_{i,j} = 0, \,\forall j }$
+
+We can now show by induction that
+
+The base case is trivial, as $m = 1$ implies that $V = (v_1),$ which is linearly
+independent by definition.
+In the inductive case, we assume that the desired result holds for any family
+of size $m,$ and we try to show it for families of size $m + 1.$
+
+\medskip(2)
+$A$ is an upper-triangular matrix with entries $a_{i,j},$ and the proof proceeds
+by induction.
+
+The base case is trivial, since a square matrix with one nonzero entry is, by
+definition, upper-triangular. The inverse is $(a_{1,1}^{-1}).$
+
+
+\end{document}
