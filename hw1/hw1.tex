@@ -4,7 +4,7 @@
 
 \setcounter{secnumdepth}{0}
 \begin{document}
-\begin{center}CIS 515 --- HW1\\Sam Panzer\end{center}
+\begin{center}CIS 515 --- HW1\\Sam Panzer and Seth Shannin\end{center}
 \subsection{Problem B1}
   Suppose $v \in V,$ since $V$ is nonempty. Then $0 = v + (-v)$, where $-v$ is $v$'s additive inverse.
 \begin{itemize}
@@ -48,11 +48,90 @@ We conclude that $\lambda_j = 0$ for all $1 \leq j \leq m,$ which implies that
 $U$ is linearly independent, as desired.
 
 \subsubsection{(2)}
-$A$ is an upper-triangular matrix with entries $a_{i,j},$ and the proof proceeds
-by induction.
+$A$ is an $m\times m$ upper-triangular matrix with entries $a_{i,j},$ and the proof proceeds
+by induction on $m$.
 
 The base case is trivial, since a square matrix with one nonzero entry is, by
-definition, upper-triangular. The inverse is $(a_{1,1}^{-1}).$
+definition, upper-triangular. The inverse is $(a_{1,1}^{-1}),$ which clearly
+gives $AA^{-1} = I.$
 
+For the inductive case, suppose that 
+\[A=\left(
+\begin{array}{ccc|c}
+& && \\
+&B&&v\\
+& && \\
+\hline
+&0&&r
+\end{array}
+\right)\]
+where $B$ is some upper-triangular matrix, $v$ is a column vector with $m-1$
+elements, and $r$ is nonzero. The induction hypothesis tells us that $B^{-1}$
+exists and is upper-triangular. We construct the matrix $A^{-1} = (z_{i,j})$
+as follows:
+When $i,j < m)$, we assign $z_{i,j} = B^{-1}.$ We set $z_{m,j}=0$ for $j < m$,
+and $z_{m,m} = r^{-1}.$ The last bit to work out is the column vector that
+occupies the same region as $v.$
+We now have
+\[A^{-1}=\left(
+\begin{array}{ccc|c}
+& && \\
+&B^{-1}&&u\\
+& && \\
+\hline
+&0&&r^{-1}
+\end{array}
+\right)\]
+
+Now, we check to see that we actually have the correct inverse.
+\[z_{i,j} = \sum_{k=1}^m a_{i,k}z_{k,j} \]
+We need $z_{i,j} = 1$ when $i \neq j$ and $z_{i,j} = 0$ otherwise.
+
+
+\subsubsection{(3)}
+This follows as a direct consequence of (1) and (2). We only need to show that
+$V$ being linearly independent implies that $U$ is linearly independent, since
+(1) covers the converse. And if $U$ is linearly independent, then we can write
+$V$ as linear combinations of elements of $U$. This is because we assume that
+$V = AU,$ and knowing that $A$ is invertible lets us rewrite this as 
+$A^{-1}V = U$.
+Then we can apply (1) again to find that $U$ is linearly independent.
+
+\subsection{Problem B3}
+\subsubsection{(1)}
+Each linear equation gives us $x_k + 2x_{k+1} = b_k$ when $k < n,$ and
+$x_n = b_n$ from the case $k = n.$ We can solve the first equation to give us
+$x_k = b_k - 2x_{k+1},$ which has the nice summation-form solution of
+\[x_k  = \sum_{i=k}^nb_{k+i}(-2)^i\]
+
+\subsubsection{(2)}
+We already proved this in Problem B2(2)!
+Actually, the inverse is quite nice. Each diagonal (\emph{i.e.} the set
+${a_{i,j}|j-i=k}$) has the same value, with value $(-2)^k$ ($k$ is the vertical
+displacement from the diagonal).
+Of course when $n=300$, the upper right-hand corner would be equal to
+$-2^{299},$ which is too large to compute, since the universe doesn't have
+enough atoms!
+
+\subsubsection{(3)}
+We will show by induction on $m$ that $(A-I)^m$ has $m$ diagonals that are equal
+to 0 (that is, if $(A-I)^m = (z_{i,j}),$ then $z_{i,j} = 0$ when $j - i < m$,
+and when $m \geq n$ the result is just 0.
+The base case is trivially satisfied, since $(A-I)$ has zeros down the main
+diagonal, and it's lower-triangular.
+
+The inductive case assumes that $(z_{i,j}) = (A-I)^m$ satisfies 
+$z_{i,j} = 0$ when $j - i < m$.
+We consider $(z'_{i,j} = (A-I)^m(A-I).$
+By the definition of matrix multiplication,
+
+\subsection{Problem B4}
+\subsection{Problem B5}
+\subsubsection{(1)}
+Since $A$ is invertible, we know that $A^{1}$ exists.
+We then assume that $AX = 0.$ We can left-multiply by $A^{-1},$ giving us
+$A^{-1}AX =  A^{-1}0$, or $X = 0,$ as desired.
+
+\subsubsection{(2)}
 
 \end{document}
