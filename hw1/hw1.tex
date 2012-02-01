@@ -21,7 +21,7 @@
   0 \cdot v = 0$.
   \end{itemize}
 
-\subsection{Problem B2}families
+\subsection{Problem B2}
 \subsubsection{(1)}
 Let $U = (u_1,\dots,u_m)$ and $V = (u_1,\dots,u_m)$ be two families of
 vectors in $E,$ such that $u$ is linearly independent, $v = Au,$ and $A$
@@ -115,15 +115,23 @@ enough atoms!
 
 \subsubsection{(3)}
 We will show by induction on $m$ that $(A-I)^m$ has $m$ diagonals that are equal
-to 0 (that is, if $(A-I)^m = (z_{i,j}),$ then $z_{i,j} = 0$ when $j - i < m$,
+to 0. That is, if $(A-I)^m = (z_{i,j}),$ then $z_{i,j} = 0$ when $i - j < m$,
 and when $m \geq n$ the result is just 0.
 The base case is trivially satisfied, since $(A-I)$ has zeros down the main
 diagonal, and it's lower-triangular.
 
 The inductive case assumes that $(z_{i,j}) = (A-I)^m$ satisfies 
-$z_{i,j} = 0$ when $j - i < m$.
-We consider $(z'_{i,j} = (A-I)^m(A-I).$
-By the definition of matrix multiplication,
+$z_{i,j} = 0$ when $i - j < m$.
+We consider $z'_{i,j} = (A-I)^m(A-I).$
+By the definition of matrix multiplication, 
+\[z'_{i,j} = \sum_{k=0}^m ((A-I)^m)_{i,k}(A-I)_{k,j}\]
+Now suppose that $i - j < m + 1.$
+Notice that $((A - I)^m)_{i,k} = 0$ for $i - k < m$, which can be rewritten as
+$i - m < k$
+Similarly, $(A - I)_{k,j} = 0$ for $k < j + 1$
+Thus one of the two terms of the summation is zero when for $i - m < k$ and
+for $k < j + 1$, which is the same as $i - m < j + 1$, or $i - j < m + 1$.
+So $z_{i,j}$ is the sum of $n$ zeros when $i - m < j + 1$, as desired.
 
 \subsection{Problem B4}
 \subsection{Problem B5}
