@@ -5,7 +5,7 @@
 \setcounter{secnumdepth}{0}
 \begin{document}
 
-\begin{center}CIS 515 --- HW1\\Sam Panzer and Seth Shannin\end{center}
+\begin{center}CIS 515 --- HW1\\Sam Panzer and Kevin Shi\end{center}
 \subsection{Problem B1}
   Suppose $v \in V,$ since $V$ is nonempty. Then $0 = v + (-v)$, where $-v$ is $v$'s additive inverse.
 \begin{itemize}
@@ -108,13 +108,14 @@ $x_k = b_k - 2x_{k+1},$ which has the nice summation-form solution of
 \subsubsection{(2)}
 We already proved this in Problem B2(2)!
 Actually, the inverse is quite nice. Each diagonal (\emph{i.e.} the set
-${a_{i,j}|j-i=k}$) has the same value, with value $(-2)^k$ ($k$ is the vertical
+$\{a_{i,j}|j-i=k\}$) has the same value, with value $(-2)^k$ ($k$ is the vertical
 displacement from the diagonal).
 Of course when $n=300$, the upper right-hand corner would be equal to
 $-2^{299},$ which is too large to compute, since the universe doesn't have
 enough atoms!
 
 \subsubsection{(3)}
+\subsubsection{(4)}
 We will show by induction on $m$ that $(A-I)^m$ has $m$ diagonals that are equal
 to 0. That is, if $(A-I)^m = (z_{i,j}),$ then $z_{i,j} = 0$ when $i - j < m$,
 and when $m \geq n$ the result is just 0.
@@ -158,7 +159,7 @@ bases and therefore linearly independent.
 
 \subsection{(4)}
 This follows from the Binomial Identity, which states that
-\[(x + y)^n = \sum_{j=k}^n \binom{n}{m}x^{n-k}y^k\]
+\[(x + y)^n = \sum_{k=0}^n \binom{n}{m}x^{n-k}y^k\]
 Then 
 \[(1-t)^{n-k} = \sum_{j=0}^{n-k}\binom{n-k}{j}1^{n-k-j}(-1)^jx^j =
 \sum_{j=0}^{n-k}\binom{n-k}{j}1^{n-k-j}(-1)^jx^j \]
@@ -177,7 +178,38 @@ A proof of this last identity is as follows:
 \[\binom{n}{k}\binom{n-k}{j-k} = \frac{n!(n-k)!}{k!(n-k)!(j-k)!(n-j)!}
 =\frac{n!}{j!(n-j)!}\frac{j!}{k!(j-k)!} = \binom{n}{j}\binom{j}{k}\]
 
-\subsection{(5)}
+\medskip
+As per part (2), we can write the column vectors
+$B = \displaystyle{(B_0^m, B_1^m,\dots,B_m^m)}$ and $X = (1,t,\dots,t^m)$,
+and the $m\times m$ matrix
+$A = (a_{y,x})$ such that $a_{y,x} = (-1)^{x - y} \binom{m}{x}\binom{x}{y}t^x$.
+This is defined so that $a_{y,x}$ is the $t^x$ term of $B^m_y$.
+Note that this is consistent with the summation from part (4), since 
+$\binom{x}{y} = 0$ and therefore the coefficient is zero when $y > x$. 
+$A$ is upper-triangular with a non-zero trace, since the terms with $y=x$
+evaluate to $a_{y,x} = \binom{m}{x} > 0$.
+Thus by B2(2), $B = AX$ is linearly independent, since $X$ is linearly
+independent and $A$ is upper-triangular with no zero entries on the diagonal.
+
+\subsubsection{(5)}
+We note that it suffices to show that the sum of the coefficients in each column
+of the matrix $A$ from the previous section, with the exception of the first
+column, is zero.
+Then we just need to show that, for $x > 0,$
+\[\sum_{y=0}^m (-1)^{x-y} \binom{m}{x}\binom{x}{y} = 0\]
+Pulling out the unchanging first term, which can then be discarded since
+$1 \leq x \leq m$, our goal is now
+\[\sum_{y=0}^m (-1)^{x-y}\binom{x}{y} = 0\]
+Now, since $\binom{x}{y} = 0$ when $y > x$, we can change the summation's bounds
+to
+\[\sum_{y=0}^x (-1)^{x-y}\binom{x}{y} = 0\]
+We can also divide by $(-1)^x,$ which is also constant, making our goal
+\[\sum_{y=0}^x(-1)^y \binom{x}{y} = 0\]
+But this is the expansion of $(1 - 1)^x$ according to the Binomial Identity,
+and this expression is equal to $0$, as desired.
+
+\medskip
+Incidentally, we answered each part of the extra credit along the way!
 
 \subsection{Problem B5}
 \subsubsection{(1)}
