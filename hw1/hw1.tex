@@ -166,14 +166,14 @@ $B^3_3(t) = t^3 = t^3 = (0,0,0,1)\cdot(1, t, t^2,t^3)$\\
 And $B^3_0(t) + B^3_1(t) + B^3_2(t) + B^3_3(t) = (1 - 3t + 3t^2 - t^3) + (3t -
 6t^2 + 3t^3) + (3t^2 -3t^3) + (t^3) = 1$
 
-\subsection{(3)}
+\subsubsection{(3)}
 Question B4(2) shows the preconditions needed to apply B2(1), once we show that
 $(1,t,t^2)$ and $(1,t,t^2,t^3)$ are each linearly independent. This follows
 because they each clearly span the polynomials of respective maximum degree 2
 and 3. Since these families are the minimal spanning families, they must be
 bases and therefore linearly independent.
 
-\subsection{(4)}
+\subsubsection{(4)}
 This follows from the Binomial Identity, which states that
 \[(x + y)^n = \sum_{k=0}^n \binom{n}{m}x^{n-k}y^k\]
 Then 
@@ -224,8 +224,36 @@ We can also divide by $(-1)^x,$ which is also constant, making our goal
 But this is the expansion of $(1 - 1)^x$ according to the Binomial Identity,
 and this expression is equal to $0$, as desired.
 
-\medskip
+\subsubsection{Extra Credit}
 Incidentally, we answered each part of the extra credit along the way!
+
+\subsubsection{(6)}
+The first identity, $\displaystyle{\sum_{j=0}^{m-i}t^iB_j^{m-i}(t)} = t^i$ follows
+directly from part (5). We merely multiply start with the identity from (5),
+\[ \sum_{j=0}^{m-i}B^{m-i}_j(t) = 1 \textrm{, so }
+\sum_{j=0}^{m-i}t^iB^{m-i}_j(t)=t^i \]
+We have already proven the second identity in part (4), in the form 
+\[\binom{n}{k}\binom{n-k}{j'-k} = \binom{n}{j'}\binom{j'}{k}\]
+Just set $n = m, k = i$, and $j' = i + j$.
+\medskip
+By application of the first identity, the last identity is equivalent to
+\[\sum_{j=0}^{m-i}t^iB_j^{m-i}(t) =
+\sum_{j=0}^{m-i}\frac{\binom{i+j}{m}{i}}{\binom{m}{i}}B_{i+j}^m(t)\]
+Since the bounds are equal, we just need to show that the summands are equal.
+Applying the second identity means that our goal is, for appropriate $i,j,m,$
+\[t^iB_j^{m-i}(t) = \frac{\binom{m-i}{j}}{\binom{m}{j+1}}B_{i+j}^m(t)\]
+Then we only need to apply the definiton of Bernstein polynomials.
+\[\binom{m-i}{j}(1-t)^{m-j}t^{i+j} =
+\frac{\binom{m-i}{j}}{\binom{m}{i+j}}\binom{m}{i+j}(1-t)^{m-j}t^{i+j}\]
+which proves the claim.
+
+\medskip
+We can then say that the $m + 1$ Bernstein polynomials with superscript $m$ span
+a $m+1$-dimensonal vector space (with the alternative ``standard''
+basis of $(1,t,\dots,t^m)$, which qualifies the Bernstein polynomials as a
+minimal spanning family and therefore a basis.
+
+\subsubsection{(7)}
 
 \subsection{Problem B5}
 \subsubsection{(1)}
