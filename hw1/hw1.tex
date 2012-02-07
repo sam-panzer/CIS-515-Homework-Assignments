@@ -83,10 +83,17 @@ We now have
 &0&&r^{-1}
 \end{array}
 \right)\]
-
-Now, we check to see that we actually have the correct inverse.
-\[z_{i,j} = \sum_{k=1}^m a_{i,k}z_{k,j} \]
-We need $z_{i,j} = 1$ when $i \neq j$ and $z_{i,j} = 0$ otherwise.
+Consider the product of the $(n-1)$th row of $A$ with the last column of $A^{-1}$. We require this to be 0, so 
+\[A_{(n-1)(n-1)}u_{n-1} + A_{(n-1)n}r^{-1} = 0\]
+By assumption the diagonal term of $A$ is nonzero, so there is a unique value of $u_{n-1}$ satisfying this equation. 
+Now inductively, suppose $u_{n-1}\cdots u_k$ have been uniquely determined, and $k > 1$. Then from multiplying the $(k-1)$th row of $A$ with the last column of $A^{-1}$, we get
+\[A_{(k-1)n}r^{-1}+\sum_{i=n-1}^{k-1} A_{(k-1)i} u_i=0\]
+By assumption only $u_{k-1}$ can vary, and since $A_{(k-1)(k-1)}\neq 0$ by hypothesis, then $u_{k-1}$ is uniquely determined. 
+\\Thus we can construct $\vec{u}$ this way to form $A^{-1}$ so that it behaves properly. 
+%Now, we check to see that we actually have the correct inverse.
+%\[z_{i,j} = \sum_{k=1}^m a_{i,k}z_{k,j} \]
+%We need $z_{i,j} = 1$ when $i \neq j$ and $z_{i,j} = 0$ otherwise.
+\\\\Now suppose our upper triangular matrix has zero diagonal entries. Let $n$ be the first column with a zero on the diagonal. Then the first $n$ column vectors span $n-1$ dimensions, so they are linearly dependent. This means that the matrix has linearly dependent column vectors; therefore it is not invertible. This proves the reverse direction. 
 
 
 \subsubsection{(3)}
@@ -103,7 +110,7 @@ Then we can apply (1) again to find that $U$ is linearly independent.
 Each linear equation gives us $x_k + 2x_{k+1} = b_k$ when $k < n,$ and
 $x_n = b_n$ from the case $k = n.$ We can solve the first equation to give us
 $x_k = b_k - 2x_{k+1},$ which has the nice summation-form solution of
-\[x_k  = \sum_{i=k}^nb_{k+i}(-2)^i\]
+\[x_k  = \sum_{i=k}^nb_{i}(-2)^{i-k}\]
 
 \subsubsection{(2)}
 We already proved this in Problem B2(2)!
@@ -115,6 +122,15 @@ $-2^{299},$ which is too large to compute, since the universe doesn't have
 enough atoms!
 
 \subsubsection{(3)}
+We can distribute the matrix $A$ through the sum since it is a linear operator. So
+\[A(x+\delta x)=Ax+A\delta x = b+\delta b\]
+We have a solution to $Ax=b$ from above. We can also solve $A\delta x=\delta b$ analogously, by
+\[\delta x_k = \sum_{i=k}^n \delta b_i (-2)^{i-k} \]
+Then the answer follows by taking $k=1$:
+\[\delta x_1 = \sum_{i=1}^n \delta b_i (-2)^{i-1} = \epsilon (-2)^{n-1}\]
+since for $1\le i < n, \delta b_i = 0$, and $\delta b_n = \epsilon$
+
+
 \subsubsection{(4)}
 We will show by induction on $m$ that $(A-I)^m$ has $m$ diagonals that are equal
 to 0. That is, if $(A-I)^m = (z_{i,j}),$ then $z_{i,j} = 0$ when $i - j < m$,
