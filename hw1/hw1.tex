@@ -234,5 +234,16 @@ We then assume that $AX = 0.$ We can left-multiply by $A^{-1},$ giving us
 $A^{-1}AX =  A^{-1}0$, or $X = 0,$ as desired.
 
 \subsubsection{(2)}
+Suppose $I_m - AB$ is invertible. We have the identity
+\\$B(I_m-AB)=B-BAB=(I_n-BA)B$ 
+\\Multypling on the right by $(I_m-AB)^{-1}$ we get
+\\$B=(I_n-BA)B(I_m-AB)^{-1}$ 
+\\Now we multiply both sides by A on the right, and then add $I_n-BA$, to obtain
+\\$I_n=(I_n-BA)B(I_m-AB)^{-1}A+I_n-BA$
+\\Factoring the right side, we get
+\\$I_n=(I_n-BA)*(B(I_m-AB)^{-1}+I_n)$
+\\Thus $I_n-BA$ is invertible, as its inverse is given by $(B(I_m-AB)^{-1}+I_n)$.
+%\\Similarly, we can write $(I_m - AB)^{-1} = (A(I_
+
 
 \end{document}
