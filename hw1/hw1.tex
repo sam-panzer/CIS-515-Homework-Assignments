@@ -225,7 +225,7 @@ But this is the expansion of $(1 - 1)^x$ according to the Binomial Identity,
 and this expression is equal to $0$, as desired.
 
 \subsubsection{Extra Credit}
-Incidentally, we answered each part of the extra credit along the way!
+
 
 \subsubsection{(6)}
 The first identity, $\displaystyle{\sum_{j=0}^{m-i}t^iB_j^{m-i}(t)} = t^i$ follows
@@ -254,6 +254,10 @@ basis of $(1,t,\dots,t^m)$, which qualifies the Bernstein polynomials as a
 minimal spanning family and therefore a basis.
 
 \subsubsection{(7)}
+Since the set of Bernstein polynomials $\{B_0^m,\cdots,B_m^m\}$ forms a basis for polynomials of degree $\le m$, then there exists constants $c_0,\cdots,c_m$ such that $x(t)=\displaystyle\sum_{i=0}^m c_i B_i^m$
+\\Similarly there exists constants $d_0,\cdots,d_m$ such that $y(t)=\displaystyle\sum_{i=0}^m d_i B_i^m$
+\\Then we choose points $b_j=\dbinom{c_j}{d_j}$ for $0\le j \le m$
+\\And so $\displaystyle\sum_{i=0}^m B_i^m(t) b_i = \left(\begin{array}{c}\displaystyle\sum_{i=0}^m B_i^m(t) c_i\\ \displaystyle\sum_{i=0}^m B_i^m(t) d_i\end{array}\right) = \dbinom{x(t)}{y(t)}=C(t)$
 
 \subsection{Problem B5}
 \subsubsection{(1)}
