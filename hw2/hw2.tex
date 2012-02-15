@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+
+\setcounter{secnumdepth}{0}
+\newcommand{\emptyspace}{\{0\}}
+\begin{document}
+
+\begin{center}CIS 515 --- HW2\\Sam Panzer and Kevin Shi\end{center}
+\subsection{Problem B1}
+We'll do this by induction on $n$.
+The base case is trivial, since then $AB := A_1(B_1^\top)^\top$.
+
+For the inductive step, we assume that $n >= 1$, and we let $A'$ be the first
+$n - 1$ columns of $A$ and $B'$ be the first $n - 1$ rows of $B$. Furthermore,
+let $a$ be the last column of $A$ and $b$ be the last column of $B$.
+Our induction hypothesis is that
+$A'B' = A_1(B_1'^\top)^\top + \dots + A_{n-1}(B_{n-1}'^\top)^\top $.
+Note that
+\[(AB)_{i,j} = \left( \sum_{k=1}^{n-1} A_{i,k}B_{k,j} \right) + a_ib_j
+             = (A'B')_{i,j} + a_ib_j\]
+Because the sum is just $A'B'$, we can break this up to be
+\[AB = A'B' + ab = A_1(B_1'^\top)^\top + \dots + A_{n-1}(B_{n-1}'^\top)^\top  +
+ab\]
+Since $ab$ is defined to be $A_n(B_n^\top)^\top$, we just cite the induction
+hypothesis to conclude the proof.
+
+\subsection{Problem B2}
+$f: E \rightarrow F$ is a bijective lineasr map. To show that $f^{-1}$ is
+linear, note that $f^{-1} \circ f = id$ and consider
+\begin{eqnarray*}
+f^{-1}(a) + f^{-1}(b) &=& id(f^{-1}(a) + f^{-1}(b) )\\
+&=& f^{-1}(f(f^{-1}(a) + f^{-1}(b))) \\
+&=&f^{-1}(f(f^{-1}(a)) + f(f^{-1}(b)))\\
+&=& f^{-1}(a + b)
+\end{eqnarray*}
+\subsection{Problem B3}
+\subsubsection{(1)}
+This proof requires two directions.
+First, let's assume that $z = (u_1,\dots,u_{i-1},v,u_{i+1}, \dots, u_p) \in Z_i$
+for some $i$.
+This means that 
+\[a(z) = \sum_{j = 1, j \neq i}^p u_j + v 
+      = \sum_{j = 1, j \neq i}^p u_j - \sum_{j = 1, j \neq i}^p u_j = 0\]
+Thus $a(z) = 0$ for each $z$ in any $Z_i$. $a$'s linearity therefore implies
+that any linear combination of vectors drawn from the $Z_i$ is therefore in its
+kernel, which means that $\ker(a) \supseteq Z_1 + \dots + Z_p$.
+
+For the other direction, we assume that $u = (u_1,\dots,u_p) \in \ker(a)$.
+Then $u_i = -\sum_{j = 1, j \neq i} u_j$ for each $i$, since $a(u) = 0$ implies
+that $u_1 + \dots + u_p = 0$.
+This means that $u$ satisfies the criterion for membership in any $Z_i$, so it
+must be a member of $Z_ + \dots + Z_p$.
+Therefore $Z_ + \dots + Z_p \supseteq \ker(a)$, meaning that the two spaces are
+equivalent.
+
+\subsubsection{(2)}
+The sum is a direct sum iff $a$ is injective.
+First, let's assume that $a$ is in fact injective, which means that 
+$u_1 + \dots + u_p = v_1 + \dots + v_p$ iff $u_i = p_i \forall i$.
+We need to show that
+\[V = U_i \cap \left( \sum_{j=1,j\neq i}^p U_j \right)\]
+is the trivial vector space. We suppose that $x \in V,$ which means that
+$x \in U_i$ and $x = \displaystyle{\sum_{j=1,j \neq i}^p}\lambda_j u_j$ where
+$u_j \in U_j$.
+
+\subsection{Problem B4}
+
+\end{document}
