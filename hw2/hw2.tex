@@ -56,13 +56,30 @@ equivalent.
 
 \subsubsection{(2)}
 The sum is a direct sum iff $a$ is injective.
-First, let's assume that $a$ is in fact injective, which means that 
+First, let's assume that $a$ is in fact injective, which means that, for
+$u_i,v_i \in U_i$,
 $u_1 + \dots + u_p = v_1 + \dots + v_p$ iff $u_i = p_i \forall i$.
 We need to show that
-\[V = U_i \cap \left( \sum_{j=1,j\neq i}^p U_j \right)\]
-is the trivial vector space. We suppose that $x \in V,$ which means that
-$x \in U_i$ and $x = \displaystyle{\sum_{j=1,j \neq i}^p}\lambda_j u_j$ where
+\[V_i = U_i \cap \left( \sum_{j=1,j\neq i}^p U_j \right)\]
+is the trivial vector space for each $i$. We suppose that $x \in V,$ which means that
+$x = u_i \in U_i$ and $x = \displaystyle{\sum_{j=1,j \neq i}^p} u_j$ where
 $u_j \in U_j$.
+Then we have $0 = u_i - \displaystyle{\sum_{j=1,j \neq i}^p} u_j$, and we can
+look at this equation as comparing the values of $a$ applied to to $(0,\dots,0)$
+and $(u_1,\dots,u_p)$. Therefore $a$'s injectivity implies that $(u_1,\dots,u_p)
+= 0$, so we conclude that $x = 0$, as desired.
+
+\medskip
+For the other direction, we assume that if $x \in U_i$ and $x =
+\displaystyle{\sum_{j=1,j \neq i}^p} u_j$ then $x = 0$.
+If we then let $a(u_1,\dots,u_p) = a(v_1,\dots,v_p)$ with $u_j \in U_j$, then we
+have $u_1 + \dots + u_p = v_1 + \dots + v_p$. In fact, for any $i$, this can
+become $(u_i - v_i) = \displaystyle{\sum_{j=1,j \neq i}^p} v_j - u_j$. But then
+we expressed an element of $U_i$ as the sum of one element from each other $U_j$
+(since $u_k, v_k \in U_k$ for all $k$, their difference is in $U_k$), which
+allows us to apply our assumption that such an element is 0.
+Thus $(u_1,\dots,u_p) - (v_1,\dots,v_p) = 0$, which implies that the two vectors
+are equal; $a$ must therefore be injective, as desired.
 
 \subsection{Problem B4}
 
