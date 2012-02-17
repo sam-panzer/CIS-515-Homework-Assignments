@@ -81,6 +81,60 @@ allows us to apply our assumption that such an element is 0.
 Thus $(u_1,\dots,u_p) - (v_1,\dots,v_p) = 0$, which implies that the two vectors
 are equal; $a$ must therefore be injective, as desired.
 
+\subsubsection{(3)}
+Given $f_1 + \dots + f_p = id$, we can compose any $f_i$ on the left of this to
+obtain, by linearity, $f_i \circ f_1 + \dots + f_i \circ f_p = f_i$, or
+\[f_i^2 + \sum_{j=1,j \neq i}^p f_i \circ f_j = f_i, \forall\, i\]
+
+If we now assume that $f_i \circ f_j = 0$ when $i \neq j$, we immediately have
+that $f_i^2 = f_i, \forall\, i$, since each term in the summaitois just 0.
+
+The other direction is a little trickier. Let's assume that $f_i^2  = f_i,
+\forall\, i$
+Starting with the summation from above, we have
+\[\sum_{j=1,j \neq i}^p f_i \circ f_j = 0 \]
+
 \subsection{Problem B4}
+$f \circ f = f$
+
+\subsection{Problem B5}
+\subsection{Problem B6}
+\subsubsection{(a)}
+\[
+E=\left( 
+\begin{array}{cccc}
+1 &0 &0 &0\\
+-1&1 &0 &0\\
+0 &-1&1 &0\\
+0 &0 &-1&1\\
+\end{array}
+\right)
+\]
+This works, since all we needed to do was subtract each row from the following
+row.
+\subsubsection{(b)}
+This product subtracts row 4 from row 3, then row 3 from row 2, then row 2 from
+row 1, followed by subtracting row 4 from row 3 again, then row 3 is subtracted
+from row 2, and finally row 4 is subtracted from row 3 \emph{again}.
+In other words, it ends up tunring the Pascal matrix into the identity!
+\subsubsection{(c)}
+Very funny. It's the product above, which is 
+\[
+E=\left( 
+\begin{array}{cccc}
+1 &0 &0 &0\\
+-1&1 &0 &0\\
+1 &2 &1 &0\\
+-1&3 &-3&1\\
+\end{array}
+\right)
+\]
+
+\subsubsection{(d)}
+As we're trying to go from the first $n$ rows of Pascal's triangle to $n-1$ rows
+of it, all we need to do is subtract row $i$ from row $i+1$ from bottom to top.
+This takes the form of
+$E_{2,1;-1}E_{3,2;-1}\dots E_{n,(n-1); -1}E_{(n+1),n; -1}$.
+
 
 \end{document}
