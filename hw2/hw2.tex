@@ -98,6 +98,21 @@ Starting with the summation from above, we have
 $f \circ f = f$
 
 \subsection{Problem B5}
+Let $A$ be an $n\times n$ matrix with elements $a_{y,x}$, and $e_{y,x,}$ be the
+elements of $E_{i,j;\beta}$.
+Then 
+\[P = AE_{i,j;\beta} = A(I + (I - E_{i,j;\beta})) = A + A(I - E_{i,j;\beta})\]
+By definition of $E_{i,j;\beta}$, we know $M = I - E_{i,j;\beta}$ is entirely
+zeros except for a $\beta$ at row $i$ and column $j$.
+Therefore any column of $P$ aside from the $j^\textrm{th}$ must be all zeros,
+since $p_{y,x} = \sum_{k=1}^n a_{y,k}m_{k,x}$ is zero whenever $x \neq j$.
+Even when $x = j$, the summand is 0 unless $k = i$, which implies that $p_{y,j}
+= \beta p_{y,i}$ for all $1 \leq y \leq n$.
+So $AM$ is all zeros except for the $j^\textrm{th}$ column, which is $\beta$
+times the $i^\textrm{th}$ column of $A$.
+Thus $P = A + AM$ is $A$ with $\beta$ times the $i^\textrm{th}$ column added to
+the $j^\textrm{th}$.
+
 \subsection{Problem B6}
 \subsubsection{(a)}
 \[
@@ -135,6 +150,11 @@ As we're trying to go from the first $n$ rows of Pascal's triangle to $n-1$ rows
 of it, all we need to do is subtract row $i$ from row $i+1$ from bottom to top.
 This takes the form of
 $E_{2,1;-1}E_{3,2;-1}\dots E_{n,(n-1); -1}E_{(n+1),n; -1}$.
+
+\medskip
+To calculate the inverse of $Pa_n$, we just repeat the above operation
+recursively, getting the top row and first column right on each iteration.
+
 
 
 \end{document}
