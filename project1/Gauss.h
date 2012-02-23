@@ -37,7 +37,7 @@ class Matrix {
 
     double * operator[](int index);
     const double *operator[](int index) const;
-    template<int p> Matrix<m,p> operator*(const Matrix<n,p>) const;
+    template<int p> Matrix<m,p> operator*(const Matrix<n,p> &) const;
     Matrix<m,1> operator*(const double vec[n]) const;
 
     void swapRows(unsigned int a, unsigned int b);
@@ -68,14 +68,14 @@ Matrix<m,n> Matrix<m,n>::id() {
 
 template<int m, int n>
 template<int p>
-Matrix<m,p> Matrix<m,n>::operator*(const Matrix<n,p> m2) const {
+Matrix<m,p> Matrix<m,n>::operator*(const Matrix<n,p> &m2) const {
   double res[m][p];
+  memset(res, 0, m * p * sizeof(double));
   for (int i = 0; i < m; i++) {
     for (int j = 0; j < p; j++) {
       for (int k = 0; k < n; k++) {
         res[i][j] += mat[i][k] * m2[k][j];
       }
-      res[i][j] = res[i][j];
     }
   }
   return Matrix<m,p>(res);
@@ -84,11 +84,11 @@ Matrix<m,p> Matrix<m,n>::operator*(const Matrix<n,p> m2) const {
 template<int m, int n>
 Matrix<m,1> Matrix<m,n>::operator*(const double vec[n]) const {
   double res[m][1];
+  memset(res, 0, m * sizeof(double));
   for (int i = 0; i < m; i++) {
     for (int k = 0; k < n; k++) {
       res[i][0] += mat[i][k] * vec[k];
     }
-    res[i][0] = res[i][0];
   }
   return Matrix<m,1>(res);
 }
@@ -183,6 +183,7 @@ void Matrix<m,n>::printMatrix() {
     }
     cout << " ]\n";
   }
+  cout << "\n";
 }
 
 // Assumes that mat is a triangular matrix with a nonzero trace

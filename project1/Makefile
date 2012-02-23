@@ -1,8 +1,10 @@
+GTK=`pkg-config --cflags --libs gtk+-2.0`
+EXEC=Matrix
 
-Matrix: Gauss.cpp Gauss.h Matrix.cpp
-	clang++ -o Matrix Matrix.cpp -Wall -g
+$(EXEC): Gauss.cpp Gauss.h Matrix.cpp
+	clang++ -o Matrix Matrix.cpp -Wall -g $(GTK)
 
-debug: Matrix
+debug: $(EXEC)
 	gdb Matrix
 
 Gauss: Gauss.class Main.class
