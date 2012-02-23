@@ -202,17 +202,16 @@ void Matrix<m,n>::luSolve(double dest[m], double target[m]) {
   double z[m];
 
   z[0] = mat[0][0 + 1] / mat[0][0];
+  w[0] = target[0] / mat[0][0];
   for (int i = 1; i < m - 1; i++) {
     z[i] = mat[i][i + 1] / (mat[i][i] - mat[i][i - 1] * z[i-1]);
-  }
-  z[m - 1] = mat[m - 1][m-1] - mat[m-1][m-2] * z[m-2];
-
-  w[0] = target[0] / mat[0][0];
-  for (int i = 1; i < m; i++) {
     double num   = (target[i] - mat[i][i-1] * w[i-1]);
     double denom = (mat[i][i] - mat[i][i-1] * z[i-1]);
     w[i] =  num / denom;
   }
+  z[m - 1] = mat[m - 1][m-1] - mat[m-1][m-2] * z[m-2];
+  w[m - 1] = (target[m-1]   - mat[m-1][m-2] * w[m-2]) / 
+             (mat[m-1][m-1] - mat[m-1][m-2] * z[m-2]);
 
   dest[m - 1] = w[m - 1];
   for (int i = m - 2; i >= 0; i--) {
