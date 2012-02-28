@@ -162,7 +162,12 @@ To calculate the inverse of $Pa_n$, we just repeat the above operation
 recursively, getting the top row and first column right on each iteration.
 
 \subsection{Problem B7}
-
+Let $f$ be a linear operator with rank 1, so dim(im $f$) = 1. Then set $u = $ im $f$. 
+\\Let $e_1 \in E$ be the vector such that $fe_1 = u$. 
+\\Now let $E^T$ denote the orthogonal subspace of $E$ to $e_1$, and let $e_2,e_3,\cdots,e_n$ be an orthogonal basis for this space. So $e_1,\cdots,e_n$ is an orthogonal basis for $E$.
+\\Then for every $v \in E^T,fv=0$, and for every $v=\lambda e_1,fv=\lambda u$. 
+\\So the matrix representation of $f$ with respect to this basis is given by $uv$ where $v$ is the row vector $(1,0,\cdots ,0)$
+\\For the reverse implication, if the matrix representation of $f$ is $A=uv$ where $u$ is a nonzero column vector of dimension $m$ and $v$ is a nonzero row vector of dimension $n$, then every row vector $r_i = u_i v$ is a scalar multiple of every other row vector $r_j = u_j v$, namely $r_i = \dfrac{u_j}{u_i}$. Hence this matrix has only one linearly independent row vector, so it has rank 1. So rank $f = 1$. 
 
 
 \end{document}
