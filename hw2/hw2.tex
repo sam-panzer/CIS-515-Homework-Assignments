@@ -95,7 +95,13 @@ Starting with the summation from above, we have
 \[\sum_{j=1,j \neq i}^p f_i \circ f_j = 0 \]
 
 \subsection{Problem B4}
-$f \circ f = f$
+We show that every vector $v\in E$ can be represented as a sum of components in the kernel and in the image of $f$. 
+\\We write 
+\[v = v + fv - fv = fv + (v - fv)\]
+\\$fv\in $ im $f$ by definition of image. Now 
+\[f(v-fv)=fv-f\circ fv=fv-fv=0\]
+\\so $(v-fv)\in \ker f$ as desired, and hence $v$ decomposes into a sum of components in the kernel and image of $f$. 
+\\Now $f\circ fv=fv$ so $f$ is the identity operator on its image. So when we apply $f$ to a vector $v$, it fixes the component of $v$ in the image of $f$ and kills the other part. Hence $f$ is the projection operator onto its image.
 
 \subsection{Problem B5}
 Let $A$ be an $n\times n$ matrix with elements $a_{y,x}$, and $e_{y,x,}$ be the
@@ -154,6 +160,8 @@ $E_{2,1;-1}E_{3,2;-1}\dots E_{n,(n-1); -1}E_{(n+1),n; -1}$.
 \medskip
 To calculate the inverse of $Pa_n$, we just repeat the above operation
 recursively, getting the top row and first column right on each iteration.
+
+\subsection{Problem B7}
 
 
 
