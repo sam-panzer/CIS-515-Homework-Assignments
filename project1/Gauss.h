@@ -10,6 +10,11 @@
 const double tolerance = 1e-10;
 using std::cout;
 
+enum END_CONDITION {
+  QUADRATIC,
+  NATURAL,
+};
+
 double round(double d) {
   const double e = fabs(d);
   if (e - int(e) < tolerance) {
@@ -199,8 +204,8 @@ double *Matrix<m,n>::backSubstitute(double dest[m], double target[m]) {
 // Assumes that mat is a tridiagonal square matrix
 template<int m, int n>
 void Matrix<m,n>::luSolve(double dest[m], double target[m]) {
-  double w[m];
-  double z[m];
+  double *w = new double[m];
+  double *z = new double[m];
 
   z[0] = mat[0][0 + 1] / mat[0][0];
   w[0] = target[0] / mat[0][0];
@@ -218,6 +223,82 @@ void Matrix<m,n>::luSolve(double dest[m], double target[m]) {
   for (int i = m - 2; i >= 0; i--) {
     dest[i] = w[i] - z[i] * dest[i + 1];
   }
+  delete [] w;
+  delete [] z;
 }
+
+template<int C>
+void bezier_points(const double pts[C][2], double *dxs, double *dys,
+                   END_CONDITION endCondition, bool gauss = false) {
+  const int N = C - 1;
+  // Calculate matrices
+  Matrix<N-1,N-1> *mat = new Matrix<N-1, N-1>();
+  // Forgive me
+  double *dx = dxs + 1;
+  double *dy = dys + 1;
+  dx[-1] = pts[0][0];
+  dx[N+1] = pts[N][0];
+  dy[-1] = pts[0][1];
+  dy[N+1] = pts[N][1];
+  
+  double xs[N-1];
+  double ys[N-1];
+  
+  if (endCondition == NATURAL) {
+    xs[0] = 6 * pts[1][0] - pts[0][0];
+    ys[0] = 6 * pts[1][1] - pts[0][1];
+    xs[N-2] = 6 * pts[N-1][0] - pts[N][0];
+    ys[N-2] = 6 * pts[N-1][1] - pts[N][1];
+    cout << "NATURAl!\n";
+  } else {// endCondition == QUADRATIC, BESSEL
+    xs[0] = 7 * pts[1][0] - pts[0][0];
+    ys[0] = 7 * pts[1][1] - pts[0][1];
+    xs[N-2] = 7 * pts[N-1][0] - pts[N][0];
+    ys[N-2] = 7 * pts[N-1][1] - pts[N][1];
+  }
+
+  for (int i = 1; i < N-2; i++) {
+    xs[i] = 6 * pts[i+1][0];
+    ys[i] = 6 * pts[i+1][1];
+    (*mat)[i][i] = 4;
+    (*mat)[i-1][i] = 1;
+    (*mat)[i][i-1] = 1;
+  }
+  (*mat)[N-3][N-2] = 1;
+  (*mat)[N-2][N-3] = 1;
+  (*mat)[0][0] = 4;
+  (*mat)[N-2][N-2] = 4;
+  if (endCondition == QUADRATIC) {
+    (*mat)[0][0] = 5;
+    (*mat)[N-2][N-2] = 5;
+  } 
+  if(gauss) {
+    mat->gaussElim();
+    mat->backSubstitute(dx + 1, ys);
+    mat->backSubstitute(dx + 1, ys);
+  }
+  else {
+    mat->luSolve(dx + 1, xs);
+    mat->luSolve(dy + 1, ys);
+  }
+
+  delete mat;
+
+  // Initial conditions
+  if (endCondition == NATURAL) {
+    dx[0] = 2.0 * pts[0][0] / 3.0 + dx[1] / 3.0;
+    dx[N] = dx[N - 1] / 3.0 + 2.0 * pts[N][0] / 3.0;
+    dy[0] = 2.0 * pts[0][1] / 3.0 + dy[1] / 3.0;
+    dy[N] = dy[N - 1] / 3.0 + 2.0 * pts[N][1] / 3.0;
+  } else { //endCondition == QUADRATIC
+    dx[0] = dx[1] + 2.0 * pts[0][0] / 3.0 - 2.0 * dx[1] / 3.0;
+    dx[N] = dx[N-1] + 2.0 * pts[N][0]/ 3.0 - 2.0 * pts[N-1][0] / 3.0;
+    dy[0] = dy[1] + 2.0 * pts[0][1] / 3.0 - 2.0 * dy[1] / 3.0;
+    dy[N] = dy[N-1] + 2.0 * pts[N][1]/ 3.0 - 2.0 * pts[N-1][1] / 3.0;
+  }
+
+  
+}
+
 
 #endif

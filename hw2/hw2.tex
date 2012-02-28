@@ -158,11 +158,41 @@ This takes the form of
 $E_{2,1;-1}E_{3,2;-1}\dots E_{n,(n-1); -1}E_{(n+1),n; -1}$.
 
 \medskip
-To calculate the inverse of $Pa_n$, we just repeat the above operation
-recursively, getting the top row and first column right on each iteration.
+Rather than following the suggestion, we will just prove that $B$, the matrix with
+the specified coordinates happens to be the inverse of $Pa_n$.
+We consider $Pa\cdot B = A$. Then
+\begin{eqnarray*}
+  a_{i,j} &=& \sum_{k=1}^n pa_{i,k}b_{k,j}\\
+  &=& \sum_{k=1}^{n+1} \binom{i-1}{k-1} \binom{k-1}{j-1}(-1)^{k + j - 2}\\
+  &=& \sum_{k=1}^{n+1} \binom{i-1}{j-1}\binom{i-j}{k-j}(-1)^{k+j-2}
+\end{eqnarray*}
+This last transformation uses the result from HW1 that
+$\binom{n}{j}\binom{j}{k} = \binom{n}{k}\binom{n-k}{j-k} $
+
+We can now use this summation to make some inferences about $a_{i,j}$.
+First, if $j > i$, every term in the summation must be zero because
+$\binom{i-j}{k-j} = 0$.
+Next, if $i = j$, then the only nonzero term in the summation will be when $k =
+j$, since $\binom{j-j}{k-j} = 0$ unless $k = j$. In this case, we have
+\[a_{i,j} = \binom{j-1}{j-1}\binom{j-j}{j-j}(-1)^{j+j-2} = 1\]
+
+Finally, we need to consider the case where $i < j$. We have
+\begin{eqnarray*}
+a_{i,j} &=& \sum_{k=1}^{n+1} \binom{i-1}{j-1}\binom{i-j}{k-j}(-1)^{k+j-2}\\
+ &=& \sum_{k=j}^{i} \binom{i-1}{j-1}\binom{i-j}{k-j}(-1)^{k+j-2}
+ \textrm{, since } \binom{i-j}{k-j} = 0 \textrm{ unless } i \leq k \leq j\\
+ &=& \binom{i-1}{j-1}\sum_{k=j}^{i} \binom{i-j}{k-j}(-1)^{k+j-2}\\
+ &=& \binom{i-1}{j-1}\sum_{k=0}^{i-j} \binom{i-j}{k}(-1)^{k+j-2}
+\end{eqnarray*}
+And we know from HW1 that, for any $m > 0$,
+\[ \sum_{k=0}^{m} \binom{m}{k}(-1)^k = 0\]
+Thus this sum and therefore $a_{i,j} = 0$ whenever $i > j$ as well.
+
+Therefore $A = Id$, proving that $B = Pa_n^{-1}$.
 
 \subsection{Problem B7}
-Let $f$ be a linear operator with rank 1, so dim(im $f$) = 1. Then set $u = $ im $f$. 
+Let $f$ be a linear operator with rank 1, so dim(im $f$) = 1. Then set $u$ to be
+the generator of im $f$. 
 \\Let $e_1 \in E$ be the vector such that $fe_1 = u$. 
 \\Now let $E^T$ denote the orthogonal subspace of $E$ to $e_1$, and let $e_2,e_3,\cdots,e_n$ be an orthogonal basis for this space. So $e_1,\cdots,e_n$ is an orthogonal basis for $E$.
 \\Then for every $v \in E^T,fv=0$, and for every $v=\lambda e_1,fv=\lambda u$. 
