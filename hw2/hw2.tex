@@ -89,10 +89,17 @@ obtain, by linearity, $f_i \circ f_1 + \dots + f_i \circ f_p = f_i$, or
 If we now assume that $f_i \circ f_j = 0$ when $i \neq j$, we immediately have
 that $f_i^2 = f_i, \forall\, i$, since each term in the summaitois just 0.
 
-The other direction is a little trickier. Let's assume that $f_i^2  = f_i,
-\forall\, i$
-Starting with the summation from above, we have
-\[\sum_{j=1,j \neq i}^p f_i \circ f_j = 0 \]
+For the other direction: Since $f_i^2=f_i$, then by problem 4, each $f_i$ is a projection map.
+\\Now we claim that for any $f_i$, for every $f_j$ such that $i\neq j$, im $f_i \cap $ im $f_j = \emptyset$. 
+\\Assume, for the sake of contradiction, that im $f_i \cap $ im $f_j = A \neq \emptyset$ for some $j\in \Gamma$. 
+\\Then let $a \in A$ be a nonzero vector. Since $a \in $ im $f_i,f_ia=a$, and similarly $f_ja=a$, so 
+\[\displaystyle\sum_{j=k}^p f_k a=2a+\displaystyle\sum_{k\neq i,k\neq j}f_k a\]
+But the second term in the sum cannot be $-a$, since each $f_k$ is a projection map and so  none of its components will be negated. This contradicts the assertion that $\displaystyle\sum f_k$ is the identity map.
+\\Thus the image of each $f_i$ is disjoint from the image of each other $f_j$. But since $E=$ im $f_j \oplus $ ker $f_j$, that means that im $f_i \subseteq $ ker $f_j$, so $f_j \circ f_i = 0$. 
+%The other direction is a little trickier. Let's assume that $f_i^2  = f_i,
+%\forall\, i$
+%Starting with the summation from above, we have
+%\[\sum_{j=1,j \neq i}^p f_i \circ f_j = 0 \]
 
 \subsection{Problem B4}
 We show that every vector $v\in E$ can be represented as a sum of components in the kernel and in the image of $f$. 
