@@ -218,6 +218,8 @@ column are zeros. Across $n$ rows, this gives $n^2$ operations.
 We're really not sure where $n(n+1) - 2$ comes from.
 
 \subsection{Problem 4}
+Firstly we know all diagonal entries are nonzero. Hence we can start with row 1 and make the first entry of row 2 zero by an elementary operation. Furthermore since $a_{11}>a_{21}$ then the constant we multiply by is less than 1, so after this operation $a_{22}> a_{22}^0 - |a_{12}|\ge a_{22}^0 - \displaystyle\sum_{i=1; i\neq 2}^n |a_{i2}|>0$, where the notation with a superscript 0 denotes the entry in the original matrix before we started operations, and where the last inequality comes from diagonal dominance. Hence we can perform the next elementary operation using row 2 without the need for pivoting.
+\\Inductively, after $k-1$ operations, $a_{kk}>a_{kk}^0 - \displaystyle\sum_{i=1; i\neq k}^k |a_{ik}| > a_{kk}^0 - \displaystyle\sum_{i=1; i\neq k}^n |a_{ik}| > 0$. Hence we can perform the $k$th operation using the entry $a_{kk}$ without needing to pivot. Furthermore $a_{kk}>a_{(k+1)k}$ since $a_{kk}\ge \displaystyle\sum_{i=1; i\neq k}^n |a_{ik}|$ and the latter summation includes the term $a_{(k+1)k}$. Hence the scalar we multiply by to perform the $k$th row operation is less than 1, so afterwards $a_{(k+1)(k+1)}>a_{(k+1)(k+1)}^0 - \displaystyle\sum_{i=1; i\neq k+1}^{k+1} |a_{i(k+1)}>0$. 
 
 \subsection{Problem 6}
 \subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$, and 0 for all other entries. It is easy to verify that $RR^T=A$. 
