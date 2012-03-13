@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\setcounter{secnumdepth}{0}
+\newcommand{\emptyspace}{\{0\}}
+\newcommand{\reals}{\mathbb{R}}
+\begin{document}
+
+\begin{center}CIS 515 --- HW3\\Sam Panzer and Kevin Shi\end{center}
+\subsection{Problem B1}
+\subsubsection{(1)}
+Since we can subtract one column from the others without affecting the
+determinant and then expand by minors along the bottom row, we can say
+\[
+\left|
+\begin{array}{ccc}
+  a_1 & b_1 & c_1 \\
+  a_2 & b_2 & c_2 \\
+  1 & 1 & 1
+\end{array}
+\right|
+=
+\left|
+\begin{array}{ccc}
+  a_1 & b_1 - a_1 & c_1 -a_1 \\
+  a_2 & b_2  - a_2& c_2  - a_2\\
+  1 & 0 & 0
+\end{array}
+\right|
+=\left|
+\begin{array}{cc}
+  b_1 - a_1 & c_1 - a_1 \\
+  b_2 - a_2 & c_2 - a_2 \\
+\end{array}
+\right|
+\]
+which is zero iff $(b_1 - a_1, b_2 - a_2)$ and $(c_1 - a_1, c_2 - a_2)$ are
+linearly dependent.
+\subsubsection{(2)}
+Similarly, we can again subtract the first column from the other columns and
+expand the bottom row by minors, giving
+\[
+\left|
+\begin{array}{cccc}
+  a_1 & b_1 & c_1 & d_1 \\
+  a_2 & b_2 & c_2  & d_2\\
+  a_3 & b_3 & c_3  & d_3\\
+  1 & 1 & 1 & 1
+\end{array}
+\right|
+=
+\left|
+\begin{array}{cccc}
+  a_1 & b_1 - a_1 & c_1 - a_1 & d_1 - a_1\\
+  a_2 & b_2 - a_2 & c_2 - a_2 & d_2 - a_2\\
+  a_3 & b_3 - a_3 & c_3 - a_3 & d_3 - a_3\\
+  1 & 0 & 0
+\end{array}
+\right|
+=\left|
+\begin{array}{ccc}
+  b_1 - a_1 & c_1 - a_1 & d_1 - a_1 \\
+  b_2 - a_2 & c_2 - a_2 & d_2 - a_2\\
+  b_3 - a_3 & c_3 - a_3 & d_3 - a_3\\
+\end{array}
+\right|
+\]
+which, again, is zero iff 
+$(b_1 - a_1, b_2 - a_2, b_3 - a_3),(c_1 - a_1, c_2 - a_2, c_3 - a_3)$, and
+$ (d_1 - a_1, d_2 - a_2, d_3 - a_3)$ are linearly dependent.
+linearly dependent.
+
+\subsection{Problem B2}
+$A$ is an $n \times n$ symmetric matrix, and $B \in GL_n$.
+Suppose $A$ is positive definite, \emph{i.e.} for any
+$z \in \reals^n,z^\top A z > 0$
+Then $z^\top B^\top A B z = $
+
+\subsection{Problem B3}
+\subsubsection{(1)}
+If we do the following four row operations, we can transform $A$ into the
+desired form. We can then recover $S$ by applying the four elementary matrices
+to the identity matrix. For now, let's assume that $a$ is nonzero, though we'll
+give a separate case for it later.
+
+We divide the top row by a, then subtract $c$ times the first row from the
+second row. Next, we zero out the upper-right corner by subtracting
+$\dfrac{b}{ad-bc}$ times the bottom row from the top row. Finally, we multiply
+the bottom row by $a$.
+
+So our four elementary matrices are,
+\[S_1 = E_{1,;a^{-1}}, S_2 = E_{2,1;-c}, S_3 = E_{1,2 ; \frac{-b}{ad-bc}};
+S_4 = E_{2; a}\]
+with $S = S_4 S_3 S_2 S_1$
+
+When $a = 0$, we know $c \neq 0$ for $A$ to be invertible. So we first add
+$c^{-1}$ times the second row to the first row for the first row operation; we
+subtract $c$ times the first row from the second row to zero out the lower
+left-hand corner; and finally we zero out the upper right-hand corner by
+subtracting enough copies of the bottom row.
+
+Thus there is always some invertible $S$ (which, incidentally, has determinant
+1) that can be expressed as the product of three or four elementary matrices,
+such that $SA$ is in the required form.
+
+When $\det(A) = 1$, we have $SA = I$, which tells us that $S = A^{-1}$.
+Thus $A$ is the product of at most four elementary matrices, namely the inverses
+of $S_1$ through $S^4$.
+
+\subsubsection{(2)}
+\end{document}
