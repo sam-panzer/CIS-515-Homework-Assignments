@@ -73,10 +73,10 @@ $ (d_1 - a_1, d_2 - a_2, d_3 - a_3)$ are linearly dependent.
 linearly dependent.
 
 \subsection{Problem B2}
-$A$ is an $n \times n$ symmetric matrix, and $B \in GL_n$.
-Suppose $A$ is positive definite, \emph{i.e.} for any
-$z \in \reals^n,z^\top A z > 0$
-Then $z^\top B^\top A B z = $
+Let $A$ be positive definite, so for all vectors $v$ we have $v^TAv\ge 0$. For every vector $w$, let $v=Bw$, and $(Bv)^T=v^TB^T$, so $w^TB^TABw\ge 0$. Hence $B^TAB$ is positive definite.
+\\Conversely, let $B^TAB$ be positive definite, so $v^TB^TABv \ge 0$ for every vector $v$. Since $B$ is invertible, then $B$ and $B^{-1}$ act transitively on the vector space; i.e. let $w$ be any vector and set $Bv=w$, so $v=B^{-1}w$. Then $(B^{-1}w)^TB^TABB^{-1}w\ge 0$. The expression on the left reduces to $w^TB^{-1^T}B^TAw$
+\\Now we show $B^{-1^T}=B^{T^{-1}}$, i.e. transpose commutes with inverse. Start with the identity $B^{-1}B=I$. Now transpose both sides to get $B^TB^{-1^T}=I$. Take the inverse of both sides to get $B^{-1^{T^{-1}}}B^{T^{-1}}=I$. Finally multiply both sides by $B^{-1^T}$ to get the desired identity. 
+Hence everything reduces to $w^TAw\ge 0$, and since $w$ is arbitrary this shows that $A$ is positive definite. 
 
 \subsection{Problem B3}
 \subsubsection{(1)}
@@ -172,4 +172,11 @@ Thus we successfully swap rows $i$ and $j$.
 \medskip
 
 \subsubsection{(4)}
+
+\subsection{Problem 6}
+\subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$. It is easy to verify that $RR^T=A$. 
+\subsubsection{(2)} $\det(R)=1$ since $R$ is upper triangular, and $\det(R^T)=\det(R)=1$, so $\det(A)=\det(R)\det(R^T)=1$
+\subsubsection{(3)} We do this by induction. The base case, $n=1$, is trivial. Now suppose the formula holds for all $n$ up to and including $N-1$. We shall compute the determinant of the $N$ dimensional matrix by cofactor expansion on the $N$th row starting from the entry $a_{NN}$. 
+\\$a_{N,N}=5-\lambda,a_{N,N-1}=2$, and the rest of the $N$th row is 0 and does not contribute to the determinant. The cofactor matrix of $a_{N,N}$ is the dimension $N-1$ matrix without the last row and column, and by the inductive hypothesis this has determinant $p_{N-1}$. If we expand on $a_{N,N-1}$ and then on $a_{N-1,N}$, we get a dimension $N-2$ matrix formed by removing the last two rows and columns, and by inductive hypothesis this have determinant $p_{N-2}$. If we expand on any element of the $N-2$ row, the determinant is zero since the last column of that matrix is now 0.
+
 \end{document}
