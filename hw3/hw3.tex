@@ -151,25 +151,49 @@ ULU =
 \subsubsection{(3)}
 This is the typical programmer's trick for swapping two variables without using
 a temporary variable.\\
-\verb|y -= x; x += y; y -= x; y *= -1|
+\verb|y -= x;    x += y;    y -= x;    y *= -1|
 
 Let $E_1 = E_{i,j;-1}$, and $E_2 = E_{j,i,1}$.
 Then $B = E_{j,-1} E_1 E_2 E_1$ does the following when we right-multiply by
 $A$:
 Subtracts row $i$ from row $j$, then adds row $j$ to row $i$, then subtracts row
 $i$ from row $j$ again, and finally multiplies row $j$ by $-1$.
-If we treat this as a single static assignment problem where $x_0$ holds row $i$
-and $y_0$ holds row $j$, it's written as
+If we initialize $x$ to hold row $i$ (let's call this value $x_0$)
+and $y$ to holds row $j$ (called $y_0$), then ``execution'' of the statements
+follows like this:
 \begin{eqnarray*}
-y_1 &=& y_0 - x_0\\
-x_1 &=& x_0 + y_1\\
-y_2 &=& y_1 - x_1\\
-y_3 &=& -y_2
+y -= x &;&  x = x_0, y = y_0 - x_0 \\
+x += y &;& x = y_0, y = y_0 - x_0\\
+y -= x &;& x = y_0, y = - x_0\\
+y *= -1 &;& x = y_0, y = x_0\\
 \end{eqnarray*}
-If we unfold the definitions, we find that $y_3 = x_0$ and $x_1 = y_0$.
+At the end, $y$ and $x$ have swapped values.
 Thus we successfully swap rows $i$ and $j$.
 
 \medskip
+This time, it's a little more complicated than a standard programming trick:\\
+\verb|y *= d;    x += y/d;    y -= (d-1) * i;    x -= y;    y += (d-1)/d * i|
+So, we let 
+\[E_3 = E_{i,n,\frac{1}{d}}, E_4 = E_{n,i,-(d-1)}, E_5 = E_{i,n,-1},
+  E_6 = E_{n,i, (d-1)/d} \]
+As before, we consider $x$ to hold row $i$ (called $x_0$) and
+$y$ to hold row $n$ (caled $y_0$). Then ``execution'' is as follows;
+\begin{eqnarray*}
+y *= d                &;& x = x_0, y = d\cdot y_0 \\
+x += y/d              &;& x = x_0 + y_0, y = d\cdot y_0 \\
+y -= (d-1)\cdot x     &;& x = x_0 + y_0, y = y_0 - (d-1) \cdot x_0\\
+x -= y                &;& x = d \cdot x_0, y = y_0 - (d-1) \cdot x_0\\ 
+y += -(d-1)/d \cdot x &;& x = d \cdot x_0, y = y_0
+\end{eqnarray*}
+We end with $y$'s original value restored and $x$ with $d$ times its
+initial value. So $E_6E_5E_4E_3E_{n_d}$ multiplies row $i$ by $d$.
+
+When $d = -1$, we find that $E_3 = E_5$ and $E_4 = E_6$.
+
+Since we can write any transposition as the product of elementary matrices, and
+we can write any permutation (matrix) as the product of (row) transpositions, we
+can clearly write any permutation matrix as the product of the elementary
+matrices that comprise the row transpositions.
 
 \subsubsection{(4)}
 \end{document}
