@@ -196,4 +196,25 @@ can clearly write any permutation matrix as the product of the elementary
 matrices that comprise the row transpositions.
 
 \subsubsection{(4)}
+We can see that such an $S$ exists by doing Gauss-Jordan elimination on $A$,
+followed by using part (3) to multiply the bottom row by $d$. This works,
+because Gauss-Jordan elimination consists only of elementary operations - no
+permutations are needed because $A$ is invertible. (In the case that the
+diagonal entry we're trying to turn into a 1 is a zero, we can just add one of
+the rows below it that has a nonzero row in the desired column.)
+Thus we only need elementary row operations to turn $A$ into $E_{n,d}$
+
+\medskip
+For $SL_n$, the above result yields $SA = I$, which implies that any
+$A \in SL_n$ has an inverse that is expressible as the product of several
+elementary matrices. We can apply this fact to the inverse of every matrix in
+$SL_n$ to obtain it for the original matrix.
+
+As for the operations, it takes up to $n$ operations to finish each column:
+one to ensure that the diagonal element is a 1 (either through scaling or by
+subtracting another row), and $n-1$ to ensure that all the other items in the
+column are zeros. Across $n$ rows, this gives $n^2$ operations.
+
+We're really not sure where $n(n+1) - 2$ comes from.
+
 \end{document}
