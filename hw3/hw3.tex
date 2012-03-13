@@ -219,6 +219,42 @@ We're really not sure where $n(n+1) - 2$ comes from.
 
 \subsection{Problem 4}
 
+\subsection{Problem 5}
+\subsubsection{(1)}
+This is a direct result of part (2).
+
+\subsubsection{(2)}
+\[L_i(x) = \prod_{j=1, j \neq i}^{m+1}\frac{x-\alpha_j}{\alpha_i-\alpha_j}\]
+Consider $L_i(\alpha_k)$. If $i = k$, then we have 
+\begin{eqnarray*}
+L_i(\alpha_i) 
+&=& \prod_{j=1, j \neq i}^{m+1}\frac{\alpha_i-\alpha_j}{\alpha_i-\alpha_j}\\
+&=& \prod_{j=1, j \neq i}^{m+1}1 = 1
+\end{eqnarray*}
+If $i \neq k$, then 
+\begin{eqnarray*}
+L_i(\alpha_i) 
+&=& \prod_{j=1, j \neq i}^{m+1}\frac{\alpha_k-\alpha_j}{\alpha_i-\alpha_j}\\
+&=& \frac{\alpha_k-\alpha_k}{\alpha_i-\alpha_k}\prod_{j=1, j \neq i, j \neq
+k}^{m+1}\frac{\alpha_k-\alpha_j}{\alpha_i-\alpha_j} \\
+&=& 0
+\end{eqnarray*}
+Thus $L_i(\alpha_k) = \delta_{i,k}$.
+\medskip
+
+Now, we consider
+\[P(x) = \sum_{i=1}^{m+1}
+    \left(\beta_i \prod_{j=1, j \neq
+    i}^{m+1}\frac{x-\alpha_j}{\alpha_i-\alpha_j}\right)
+     = \sum_{i=1}^{m+1} \beta_i L_i(x)
+    \]
+and look at $P(\alpha_k)$
+\begin{eqnarray*}
+P(\alpha_k) &=& \sum_{i=1}^{m+1} \beta_i L_i(\alpha_k) \\
+&=& \sum_{i=1}^{m+1} \beta_i \delta_{i,k}\\
+&=& \beta_k
+\end{eqnarray*}
+
 \subsection{Problem 6}
 \subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$, and 0 for all other entries. It is easy to verify that $RR^T=A$. 
 \subsubsection{(2)} $\det(R)=1$ since $R$ is upper triangular with all 1's on the diagonal, and $\det(R^T)=\det(R)=1$, so $\det(A)=\det(R)\det(R^T)=1$
