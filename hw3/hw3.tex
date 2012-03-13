@@ -110,4 +110,66 @@ Thus $A$ is the product of at most four elementary matrices, namely the inverses
 of $S_1$ through $S^4$.
 
 \subsubsection{(2)}
+Let $u = \dfrac{\cos(\theta) - 1}{\sin(\theta)}$ and $v = \sin(\theta)$.
+Then 
+\[
+ULU = 
+\left(
+\begin{array}{cc}
+  1 & u \\
+  0 & 1
+\end{array}
+\right)
+\left(
+\begin{array}{cc}
+  1 & 0 \\
+  v & 1
+\end{array}
+\right)
+\left(
+\begin{array}{cc}
+  1 & u \\
+  0 & 1
+\end{array}
+\right)
+= 
+\left(
+\begin{array}{cc}
+  1 + uv & 2u + u^2v \\
+  v & 1 + uv
+\end{array}
+\right)
+=
+\left(
+\begin{array}{cc}
+  \cos(\theta) & -\sin(\theta) \\
+  \sin(\theta) & \cos(\theta)
+\end{array}
+\right)
+\]
+
+\subsubsection{(3)}
+This is the typical programmer's trick for swapping two variables without using
+a temporary variable.\\
+\verb|y -= x; x += y; y -= x; y *= -1|
+
+Let $E_1 = E_{i,j;-1}$, and $E_2 = E_{j,i,1}$.
+Then $B = E_{j,-1} E_1 E_2 E_1$ does the following when we right-multiply by
+$A$:
+Subtracts row $i$ from row $j$, then adds row $j$ to row $i$, then subtracts row
+$i$ from row $j$ again, and finally multiplies row $j$ by $-1$.
+If we treat this as a single static assignment problem where $x_0$ holds row $i$
+and $y_0$ holds row $j$, it's written as
+\begin{eqnarray*}
+y_1 &=& y_0 - x_0\\
+x_1 &=& x_0 + y_1\\
+y_2 &=& y_1 - x_1\\
+y_3 &=& -y_2
+\end{eqnarray*}
+If we unfold the definitions, we find that $y_3 = x_0$ and $x_1 = y_0$.
+Thus we successfully swap rows $i$ and $j$.
+
+\medskip
+
+\subsubsection{(4)}
 \end{document}
