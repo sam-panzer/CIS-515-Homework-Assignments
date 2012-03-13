@@ -257,6 +257,20 @@ P(\alpha_k) &=& \sum_{i=1}^{m+1} \beta_i L_i(\alpha_k) \\
 &=& \beta_k
 \end{eqnarray*}
 
+To show uniqueness, we consider some other polynonmial $Q(x)$ such that
+$Q(\alpha_k) = P(\alpha_k) = \beta_k$ for all $1 \leq k \leq m+1$.
+Then $Q(\alpha_k) - P(\alpha_k) = 0$ for any $k$.
+So $Q - P$ is a degree $m$ polynomial that has $m+1$ zeros. 
+The only such polynomial is the zero polynomial, so $Q - P = 0$, which implies
+that $Q = P$, as desired.
+
+\subsubsection{(3)}
+
+
+Since the $m+1$ polynomials $L_1,\dots,L_{m+1}$ form a maximal linearly
+independent set in a space of degree $m+1$, they form a basis for all
+polynomials of degree at most $m$.
+
 \subsection{Problem 6}
 \subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$, and 0 for all other entries. It is easy to verify that $RR^T=A$. 
 \subsubsection{(2)} $\det(R)=1$ since $R$ is upper triangular with all 1's on the diagonal, and $\det(R^T)=\det(R)=1$, so $\det(A)=\det(R)\det(R^T)=1$
