@@ -176,7 +176,7 @@ Thus we successfully swap rows $i$ and $j$.
 \subsection{Problem 4}
 
 \subsection{Problem 6}
-\subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$. It is easy to verify that $RR^T=A$. 
+\subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$, and 0 for all other entries. It is easy to verify that $RR^T=A$. 
 \subsubsection{(2)} $\det(R)=1$ since $R$ is upper triangular, and $\det(R^T)=\det(R)=1$, so $\det(A)=\det(R)\det(R^T)=1$
 \subsubsection{(3)} We do this by induction. The base case, $n=1$, is trivial. Now suppose the formula holds for all $n$ up to and including $N-1$. We shall compute the determinant of the $N$ dimensional matrix by cofactor expansion on the $N$th row starting from the entry $a_{NN}$. 
 \\$a_{N,N}=5-\lambda,a_{N,N-1}=2$, and the rest of the $N$th row is 0 and does not contribute to the determinant. The cofactor matrix of $a_{N,N}$ is the dimension $N-1$ matrix without the last row and column, and by the inductive hypothesis this has determinant $p_{N-1}$. If we expand on $a_{N,N-1}$ and then on $a_{N-1,N}=2$, we get a dimension $N-2$ matrix formed by removing the last two rows and columns, and by inductive hypothesis this have determinant $p_{N-2}$. If we expand on any element of the $N-2$ row, the determinant is zero since the last column of that matrix is now 0.
