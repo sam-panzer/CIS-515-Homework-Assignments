@@ -266,10 +266,34 @@ that $Q = P$, as desired.
 
 \subsubsection{(3)}
 
+%If we let $C_i = \prod_{k=1,k \neq i}^{m+1} (\alpha_i - \alpha_k)$,
+%we can write 
+%\[L_i = \frac{1}{C_i(x-\alpha_i)}\prod_{k=1}^{m+1} (x - \alpha_k) \]
 
-Since the $m+1$ polynomials $L_1,\dots,L_{m+1}$ form a maximal linearly
-independent set in a space of degree $m+1$, they form a basis for all
-polynomials of degree at most $m$.
+%Then, if we have some linear combination equal to zero,
+%\[ 0 = \sum_{i=1}^{m+1} \frac{\lambda_i}{C_i} L_i = 
+%\left(\prod_{k=1}^{m+1}(x-\alpha_k) \right) \sum_{i=1}^{m+1}\frac{\lambda_i}{x-\alpha_i}\]
+%Since the $\Pi$ product is nonzero and $(x-\alpha_i)$ is nonzero (let's assume
+%that $x \neq \alpha_i$ for any $i$), we would need $\lambda_i = 0$ for all $i$.
+
+If we chose $\beta_i = 1$ for all $1 \leq i \leq m+1$, then we find that
+$P(\alpha_i) = 1$ for all $i$. This implies that $L_1(x) + \dots + L_{m+1}(x) =
+1$, since it is a polynomial of degree at most $m$ with $m+1$ points equal to 1.
+
+In fact, to express an arbitrary polynomial $P(x)$ as $Q(x)$ in terms of
+$(L_1,\dots,L_{m+1}$, we just pick $\beta_i = P(\alpha_i)$.
+Then, for all $1 \leq i \leq m+1$,
+\[Q(\alpha_i) = \beta_1 \delta_{1,i} + \dots + \beta_i \delta_{i,i} + \dots +
+\beta_{m+1} \delta_{m+1,i} = 0 + \dots + \beta_i + \dots + 0 = P(\alpha_i)\]
+Using the same result as above, $P$ agrees with $Q$ at $m+1$ points, so it must
+be equal to $Q$.
+
+Since the $m+1$ polynomials $L_1,\dots,L_{m+1}$ span the $(m+1)$-dimensional
+space of polynomials of degree at most $m$, they form a basis for all
+polynomials of degree at most $m$. This implies that they must be linearly
+independent!
+
+\subsubsection{(4)}
 
 \subsection{Problem 6}
 \subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$, and 0 for all other entries. It is easy to verify that $RR^T=A$. 
