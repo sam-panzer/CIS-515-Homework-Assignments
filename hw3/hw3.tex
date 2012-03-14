@@ -285,7 +285,7 @@ $P(\alpha_i) = 1$ for all $i$. This implies that $L_1(x) + \dots + L_{m+1}(x) =
 1$, since it is a polynomial of degree at most $m$ with $m+1$ points equal to 1.
 
 In fact, to express an arbitrary polynomial $P(x)$ as $Q(x)$ in terms of
-$(L_1,\dots,L_{m+1}$, we just pick $\beta_i = P(\alpha_i)$.
+$(L_1,\dots,L_{m+1})$, we just pick $\beta_i = P(\alpha_i)$.
 Then, for all $1 \leq i \leq m+1$,
 \[Q(\alpha_i) = \beta_1 \delta_{1,i} + \dots + \beta_i \delta_{i,i} + \dots +
 \beta_{m+1} \delta_{m+1,i} = 0 + \dots + \beta_i + \dots + 0 = P(\alpha_i)\]
@@ -298,6 +298,16 @@ polynomials of degree at most $m$. This implies that they must be linearly
 independent!
 
 \subsubsection{(4)}
+Consider $L_i$. Then $L_i^*$ is defined such that $L_i^*(L_j) = \delta_{i,j}$.
+So to see $L_i^*(P)$, we first express $P$ as $\beta_1 L_1 + \dots + \beta_{m+1}
+L_{m+1}$.
+Then 
+\begin{eqnarray*}
+L_i^*(P) &=& \beta_1 \delta_{i,1} + \dots + \beta_i \delta_{i,i} + \dots + \delta_{i,m+1} \\
+ &=& 0 + \dots + \beta_i + \dots + 0 = \beta_i
+\end{eqnarray*}
+And we have already established that $P(\alpha_i) = \beta$, which allows us to
+conclude that $L_i^*(P) = P(\alpha_i)$.
 
 \subsection{Problem 6}
 \subsubsection{(1)} Let $R$ be the matrix with $r_{i,i}=1$ for all $1\le i\le n, r_{i,i+1}=2$ for $i\neq 1$, and 0 for all other entries. It is easy to verify that $RR^T=A$. 
