@@ -95,6 +95,8 @@ So our four elementary matrices are,
 S_4 = E_{2; a}\]
 with $S = S_4 S_3 S_2 S_1$
 
+Remark: here the notation $E_{i; \beta}=E_{i,i,\beta -1}$. 
+
 When $a = 0$, we know $c \neq 0$ for $A$ to be invertible. So we first add
 $c^{-1}$ times the second row to the first row for the first row operation; we
 subtract $c$ times the first row from the second row to zero out the lower
@@ -215,12 +217,14 @@ one to ensure that the diagonal element is a 1 (either through scaling or by
 subtracting another row), and $n-1$ to ensure that all the other items in the
 column are zeros. Across $n$ rows, this gives $n^2$ operations.
 
-We're really not sure where $n(n+1) - 2$ comes from.
+Since we can't use scaling directly, we just add the only nonzero entry to another row so that we now have another nonzero entity. This takes 3 operations to finish the column, since only one entry in nonzero when we start.
 
 \subsection{Problem 4}
-Let $A$ be a strictly diagonal dominant matrix. Suppose $Av=0$ for some vector $v$; we show that $v$ is necessarily 0. Now let $v$ be an element of the basis, and construct an orthogonal basis for the orthogonal space to $v$, $\{v_2,v_3,\cdots ,v_n\}$, so that $\{v,v_2,\cdots,v_n\}$ is a basis for $\mathbb{R}^n$. Let $Q$ be the matrix which acts on the left to change the basis to this new basis. Then $Qv=(\lambda , 0, \cdots ,0)$ where $\lambda = \|v\|$. Furthermore $Q$ is an invertible matrix. 
-So if $Av=0$ then changing to this new basis we get $QAQv=0$.  
-\\The product on the left is $QA(\lambda e_1) = Q\lambda \displaystyle\sum_{j=1}^n a_{ji}$. We know that $a_{ii} > \displaystyle\sum_{j=1; j\neq i}^n |a_{ji}|$ by the condition of strict diagonal dominance; hence $AQv\neq 0$ unless $\lambda =0$. By invertibility of $Q$, the entire product is not zero unless $AQv=0$. Thus this implies $\lambda = 0$, which means $v$ is the zero vector, which shows nonsingularity of $A$. 
+Let $A$ be a strictly diagonal dominant matrix. Suppose $vA=0$ for some vector $v$; we show that $v$ is necessarily 0. Suppose $v\neq 0$; consider the representation of $v$ in the canonical basis; $v=\displaystyle\sum_{i=1}^n \alpha_i e_i$. Then take a basis of $\mathbb{R}^n$ to be $\{\alpha_1 e_1,\cdots ,\alpha_n e_n\}$. It it easy to check linear independence of this set, so it is indeed a basis, and the representation of $v$ in this basis is just $(1,\cdots ,1)$. 
+
+Now let $Q$ be the matrix which acts on the right to change the basis to this new basis. Then $vQ=(1,\cdots ,1)$. Furthermore $Q$ is an invertible matrix. 
+So if $vA=0$ then changing to this new basis we get $vQAQ=0$. 
+\\The product on the left is $(1,\cdots,1)AQ = \left( \displaystyle\sum_{j=1}^n a_{j1}, \displaystyle\sum_{j=1}^n a_{j2},\cdots ,\displaystyle\sum_{j=1}^n a_{jn} \right)Q$. We know that $a_{ii} > \displaystyle\sum_{j=1; j\neq i}^n |a_{ji}|$ by the condition of strict column dominance for every column; hence every entry of the row vector above is nonzero. By invertibility of $Q$, the entire product is not zero unless the vector is zero, which happens iff $v=0$. Thus this gives nonsingularity of $A$.
 \\Finally we know from class that Gaussian elimination does not require pivoting if the matrix is nonsingular.
 %Firstly we know all diagonal entries are nonzero. Hence we can start with row 1 and make the first entry of row 2 zero by an elementary operation. Furthermore since $a_{11}>a_{21}$ then the constant we multiply by is less than 1, so after this operation $a_{22}> a_{22}^0 - |a_{12}|\ge a_{22}^0 - \displaystyle\sum_{i=1; i\neq 2}^n |a_{i2}|>0$, where the notation with a superscript 0 denotes the entry in the original matrix before we started operations, and where the last inequality comes from diagonal dominance. Hence we can perform the next elementary operation using row 2 without the need for pivoting.
 %\\Inductively, after $k-1$ operations, $a_{kk}>a_{kk}^0 - \displaystyle\sum_{i=1; i\neq k}^k |a_{ik}| > a_{kk}^0 - \displaystyle\sum_{i=1; i\neq k}^n |a_{ik}| > 0$. Hence we can perform the $k$th operation using the entry $a_{kk}$ without needing to pivot. Furthermore $a_{kk}>a_{(k+1)k}$ since $a_{kk}\ge \displaystyle\sum_{i=1; i\neq k}^n |a_{ik}|$ and the latter summation includes the term $a_{(k+1)k}$. Hence the scalar we multiply by to perform the $k$th row operation is less than 1, so afterwards $a_{(k+1)(k+1)}>a_{(k+1)(k+1)}^0 - \displaystyle\sum_{i=1; i\neq k+1}^{k+1} |a_{i(k+1)}>0$. 
