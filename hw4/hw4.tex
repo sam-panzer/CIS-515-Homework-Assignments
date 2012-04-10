@@ -12,6 +12,33 @@
 
 \begin{center}CIS 515 --- HW4\\Sam Panzer and Kevin Shi\end{center}
 \subsection{Problem B1}
+\subsubsection{(1)}
+Set $m=$ argmin$_i \, |(Av)_i|$ and $n=$ argmin$_i \, |v_i|$. Assume for the sake of contradiction that we have
+ \[v_n \delta > (Av)_m = \displaystyle\sum_jA_{jm}v_j\]
+
+Now consider $(Av)_n=\displaystyle\sum_{j\neq n}A_{jn}v_j+A_{nn}v_n$. By diagonal dominance we know that the last term determines the sign of the overall sum, so thus this is minimized by
+\[\displaystyle\sum_{j\neq n}A_{jn}v_j+A_{nn}v_n \ge |A_{nn}||v_n| - \displaystyle\sum_{j\neq n} |A_{jn}||v_j| = \]
+
+Now $v_n \ge v_j \, \forall \, j$, so this becomes
+\[\ge |A_{nn}||v_n| - \displaystyle\sum_{j\neq n} |A_{jn}||v_n|=|v_n|\left(|A_{nn}|-\displaystyle\sum_{j\neq n}|A_{jn}|\right)\]
+
+But we have 
+\[\delta = \min \left(|A_{ii}|-\displaystyle\sum_{j\neq i}|A_ji|\right)\]
+
+so thus
+\[|v_n|\left(|A_{nn}|-\displaystyle\sum_{j\neq n}|A_{jn}|\right) \ge |v_n|\delta > (Av)_m\]
+this is a contradiction since $m$ was supposed to maximize the quantity. So $\|v\|_{\infty}\delta \le \|Av\|_{\infty}$
+\subsubsection{(2)}
+Suppose we had
+\[\displaystyle\sup_{v\neq 0}\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} > \displaystyle\sup_{w\neq 0}\dfrac{\|w\|_{\infty}}{\|Aw\|_{\infty}}\]
+then choose $w=A^{-1}v$ where $v$ is the maximizing argument of the LHS, so 
+\[\dfrac{\|w\|_\infty}{\|Aw\|_{\infty}}=\dfrac{\|A^{-1}v\|_{\infty}}{\|AA^{-1}v\|_{\infty}}=\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} > \displaystyle\sup_{w\neq 0}\dfrac{\|w\|_{\infty}}{\|Aw\|_{\infty}}\]
+which is clearly a contradiction. Similarly if
+\[\displaystyle\sup_{v\neq 0}\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} < \displaystyle\sup_{w\neq 0}\dfrac{\|w\|_{\infty}}{\|Aw\|_{\infty}}\]
+then choose $v=Aw$ where $w$ is the maximizing argument of the RHS to get
+\[\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} = \dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} > \[\displaystyle\sup_{v\neq 0}\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}}\]
+which is again a contradiction. So the two have to be equal.
+
 \subsection{Problem B2}
 \subsubsection{(1)}
 Given $A \in GL_n$ and $||\cdot||$ a vector norm on $\complex^n$, we need to show
