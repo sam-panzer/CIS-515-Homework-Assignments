@@ -151,5 +151,110 @@ y_{k+1} &=&  -1 - v_k
 which is equivalent to the expanded versoin of the desired form.
 
 \subsubsection{(4)}
+Unfolding the matrix multiplication, we have
+\begin{eqnarray*}
+u_{k+1} &=&  2u_k - 2v_k + x_k - y_k\\
+x_{k+1} &=& -u_k + v_k - 2\\
+v_{k+1} &=&  2v_k + x_k\\
+y_{k+1} &=&  -v_l - 1\\
+1 &=&  1
+\end{eqnarray*}
+which is clearly equivalent to the equations in the previous section.
+
+Numpy (a matematical module for Python) tells me that 
+\begin{verbatim}
+>>> x = array([2,-2,...,0,1]).reshape(5,5)
+>>> linalg.eigvals(x)
+[ 1,  1,  1,  1, 1 ]
+\end{verbatim}
+You weren't kidding: I was surprised!
+
+Now, if we let $N = T - I$ as described in the problem statement, nothing deep about $N$ becomes immediately apparent. It suffices to verify that $N^4 = 0$ by just squring $N$ successively!
+
+\begin{verbatim}
+>>> y = matrix(x - identity(5))
+>>> y*y*y*y
+matrix([0,...,0])
+\end{verbatim}
+
+The last identity follows easily by induction. The base case is trivial, as $T^0 = I$ is immediately verified when $k = 0$.
+If we then assume that $T^k = I + kN + \frac{1}{2}k(k-1)N^2 + \frac{1}{6}k(k-1)(k-2)N^3$, then
+\begin{eqnarray*}
+  T^{k+1} &=&  TT^k = (I + N)(I + kN + \frac{1}{2}k(k-1)N^2 + \frac{1}{6}k(k-1)(k-2)N^3)\\
+  &=&  I + kN + \frac{1}{2}k(k-1)N^2 + \frac{1}{6}k(k-1)(k-2)N^3 \\
+  && + N + kN^2 + \frac{1}{2}k(k-1)N^3 + \frac{1}{6}k(k-1)(k-2)N^4 \\
+  &=& I + (k+1)N + \frac{1}{2}(k+1)(k-1 + 2)N^2 + \frac{1}{6}(k(k-1)(k - 2 + 3))N^3 + \frac{1}{6}k(k-1)(k-2)N^4\\
+  &=& I + (k+1)N + \frac{1}{2}(k+1)(k)N^2 + \frac{1}{6}(k+1)(k)(k-1) + 0
+\end{eqnarray*}
+as desired
+
+\subsubsection{(5)}
+The first identity is just a matter of definition, since we already have that $X_{k+1} = T X_{k}$ (where $X$ is the column vector $(u_k, v_k, x_k, y_k, 1)$) as shown in part (4).
+Then it follows that left-multiplication by $T$ iterates $k$ by one, so we have $X_{k} = T^k X_0 = T^k (-1,-1,-2,-1,1)^\top$
+
+Then, to expand $T_k$, we use the identity from $(4)$.
+\[
+kN = \left( 
+\begin{array}{ccccc}
+k & -2k & k & -k & 0 \\
+0 &   k & 0 &  k & 0 \\
+-k&   k & -k&  0 & 2k \\
+0 &  -k & 0 & -k & -k \\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right)
+\]
+
+\[
+\frac{1}{2}k(k-1)N^2 = \left( 
+\begin{array}{ccccc}
+  0 & -k(k-1) & 0 & -k(k-1) & -\frac{1}{2}k(k-1) \\
+  0 &   0 & 0 &  0 & -\frac{1}{2}k(k-1) \\
+0 &  k(k-1) & 0 & k(k-1) & k(k-1) \\
+0 &   0 & 0 &  0 &  \frac{1}{2}k(k-1)  \\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right)
+\]
+And 
+\[
+\frac{1}{6}k(k-1)(k-2)N^3 = 
+\frac{1}{2}k(k-1)N^2 = \left( 
+\begin{array}{ccccc}
+0 & 0 & 0 & 0 & \frac{1}{3}k(k-1) \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & -\frac{1}{3}k(k-1)  \\
+0 & 0 & 0 & 0 & 0  \\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right)
+\]
+
+So it is easily verified that 
+$T^k$, the sum of the above three matrices and $I$, is as desired.
+
+We have $X_k = T^k X_0$, so 
+\begin{eqnarray*}
+  u_k &=& -k+1 +k(k+1) - 2k + k^2 + \frac{1}{6}(k-1)k(2k-7)\\
+  v_k &=&  -(k+1) -k - \frac{1}{2}(k-1)k\\
+  x_k &=& k - k^2 -2(k-1) - (k-1)k - \frac{1}{3}k(( k-6)k + 11)\\
+  y_k &=&  k - (k-1) + \frac{1}{2}(k-3)k
+\end{eqnarray*}
+Which again simplifies as desired.
+
+Finally, $u_k y_k - v_k x_k$ expands to something that Wolfram Alpha tells me reduces to $-1 - \frac{7}{3}k - \frac{23}{12}k^2 - \frac{2}{3}k^3 - \frac{1}{12}k^4$ (simple polynomial algebra again omitted).
+
+So, for $k = n -2$, we have $d_n = -1 - \frac{7}{3}(n-2) - \frac{23}{12}(n-2)^2 - \frac{2}{3}(n-2)^3 - \frac{1}{12}(n-2)^4$, which expands via computer algebra system to $P(0) = -\frac{1}{12}n^4 + \frac{1}{12} n^2$.
+
+Thus $P(\lambda) = \lambda^2 - n^2\lambda - \frac{1}{12}n^2(n^2-1)$ once we plug in the sum and product of the roots, so $P_A(\lambda)$ has the desired form.
+The two nonzero eigenvalues of $A$ can be found by the quadratic formula to be
+\[\lambda =  \frac{n^2 \pm \sqrt{n^4 + 4 \frac{1}{12} n^2(n^2-1)}}{2}\]
+The discriminant reduces to $n^4 + \frac{n^4}{3} - \frac{n^2}{3}$, or 
+$\frac{n^2}{3}(4n^2 - 1)$, which is equivalent to the desired answer.
+
+The phenomenon above comes from the fact that, in the last version of the negative eigenvalue shown, we have $\lambda_1 \approx -0.07735027 n^2$, since $\sqrt{1 - \frac{1}{4n^2}}$ approaches 1 once $n$ gets sufficiently large ($n = 5$ makes the square root term larger than $0.97979$).
+Therefore, once we add something larget than $\lambda_1$ to each diagonal entry, we have shifted all the eigenvalues to be positive!
+That is, if $l > |\lambda_1|,$ then $\det((T + lI) - \lambda' I)$ will have each roots $\lambda'_i = \lambda_i + l > 0$, since $\lambda_1$ was the most negative eigenvalue.
+If all the eigenvalues are positive, then their product, the determinant, must be nonzero.
 
 \end{document}
