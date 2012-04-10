@@ -2,6 +2,7 @@
 \usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
 
 \setcounter{secnumdepth}{0}
 \newcommand{\emptyspace}{\{0\}}
@@ -36,7 +37,7 @@ then choose $w=A^{-1}v$ where $v$ is the maximizing argument of the LHS, so
 which is clearly a contradiction. Similarly if
 \[\displaystyle\sup_{v\neq 0}\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} < \displaystyle\sup_{w\neq 0}\dfrac{\|w\|_{\infty}}{\|Aw\|_{\infty}}\]
 then choose $v=Aw$ where $w$ is the maximizing argument of the RHS to get
-\[\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} = \dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} > \[\displaystyle\sup_{v\neq 0}\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}}\]
+\[\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} = \dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}} > \displaystyle\sup_{v\neq 0}\dfrac{\|A^{-1}v\|_{\infty}}{\|v\|_{\infty}}\]
 which is again a contradiction. So the two have to be equal.
 
 \subsection{Problem B2}
@@ -178,5 +179,13 @@ y_{k+1} &=&  -1 - v_k
 which is equivalent to the expanded versoin of the desired form.
 
 \subsubsection{(4)}
+
+\subsection{Problem B5}
+The requested plots. One which converges quickly $(<100)$ and one which converges slowly $(>1000)$.
+
+\includegraphics[height=3in, width=5in]{15rt15.jpg}
+
+\includegraphics[height=3in, width=5in]{1000rt1000i4.jpg}
+
 
 \end{document}
