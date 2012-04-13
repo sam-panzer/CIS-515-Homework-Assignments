@@ -293,7 +293,7 @@ The requested plots. One which converges quickly $(<100)$ and one which converge
 \includegraphics[height=3in, width=5in]{1000rt1000i4.jpg}
 
 
-\subsection{Extra credit}
+\subsection{Extra credit (5)}
 To show that the two expressions are equal, we only need to show that 
 \[ \sum_{j=1}^{n-4} a^j \frac{1}{n-1}\left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) =
 \frac{n(n-2)}{3}a + \sum_{j=2}^{n-4}\frac{j+1}{j+2}\frac{n}{n-1}a^j \binom{n-1}{j+1} 
@@ -339,6 +339,25 @@ Now, we can compare the two summations term-by-term. Let's transform the left si
 &=& n\frac{j+1}{j+2} \binom{n-1}{j+1}\\
 \end{eqnarray*}
 Whew! The two descriptions of $\mu_n(a)$ are equivalent.
+\newpage
+\subsection{(6)}
+For $j\ge 1$, the coefficient of $a^j$ in $a\mu_n$ corresponds to the coefficient $a^{j+1}$ in $\mu_n$, which occurs in the summation. So this coefficient is \[\dfrac{(j)n}{(j+1)(n-1)} \dbinom{n-1}{j}\] 
 
+The coefficient of $a^j$ in $(a+1)^{n-1}-1$ is 
+\[\dbinom{n-1}{j}\]
+
+For $n> j$ we have 
+\[jn \le jn + n - j - 1 = (n-1)(j+1) \Longrightarrow \dfrac{j}{j+1} \le \dfrac{n-1}{n} \Longrightarrow \dfrac{jn}{(j+1)(n-1)} \le 1\]
+
+Thus
+\[\dfrac{(j)n}{(j+1)(n-1)} \dbinom{n-1}{j} \le \dbinom{n-1}{j}\]
+
+We see that the inequality is strict if $n-j>1$ since then $n-j-1>0$, so for $n\ge 3$ and $j\le n-2$, the inequality is strict. 
+
+For the last statement, we have
+\[\eta_{n,k+1} = \mu_n(\epsilon_1) \left(\dfrac{n-1}{n}\right) \dfrac{\epsilon_k^2 \mu_n (\epsilon_k)}{(\epsilon_k +1)^{n-1}} =  \left(\dfrac{n-1}{n}\right) \eta_{n,k}^2 \dfrac{\mu_n(\epsilon_k)}{\mu_n(\epsilon_1)} \dfrac{1}{(\epsilon_k+1)^{n-1}}\]
+
+Now $\epsilon_1 \ge \epsilon_k$ so $\dfrac{\mu_n(\epsilon_k)}{\mu_n(\epsilon_1)} \le 1$, and also $(1+\epsilon_k)>1$ so $\dfrac{1}{(\epsilon_k+1)^{n-1}} \le 1$. Thus we get
+\[\eta_{n,k+1} \le \left(\dfrac{n-1}{n}\right) \eta_{n,k}^2\]
 
 \end{document}
