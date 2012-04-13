@@ -293,4 +293,52 @@ The requested plots. One which converges quickly $(<100)$ and one which converge
 \includegraphics[height=3in, width=5in]{1000rt1000i4.jpg}
 
 
+\subsection{Extra credit}
+To show that the two expressions are equal, we only need to show that 
+\[ \sum_{j=1}^{n-4} a^j \frac{1}{n-1}\left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) =
+\frac{n(n-2)}{3}a + \sum_{j=2}^{n-4}\frac{j+1}{j+2}\frac{n}{n-1}a^j \binom{n-1}{j+1} 
+\]
+First, we'll pull off the $j = 1$ term on the left, and show it's equal to the part not included in the summation on the right.
+When $j=1$, we have
+\begin{eqnarray*}
+& & a\frac{1}{n-1}\left( (n-1)\binom{n-2}{1} + (n-2)\binom{n-2}{2} - \binom{n-2}{3} \right) \\
+&=&  a\frac{1}{n-1}\left( (n-1)(n-2) + \frac{1}{2}(n-2)(n-2)(n-3) - \frac{1}{6}(n-2)(n-3)(n-4) \right) \\
+&=&  a\frac{n-2}{6(n-1)}\left(6(n-1) + 3(n-2)(n-3) - (n-3)(n-4) \right) \\
+&=&  a\frac{n-2}{6(n-1)}(2n^2 - 2) =  a\frac{2n(n-1)(n-2)}{6(n-1)} \\
+&=&  a\frac{n(n-2)}{3}
+\end{eqnarray*}
+This leaves the rest of the first summation, but with $j$ starting at $2$. Our goal becomes to show that
+\[
+\sum_{j=2}^{n-4} a^j \frac{1}{n-1}\left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) 
+ = \frac{n(n-2)}{3}a + \sum_{j=2}^{n-4}\frac{j+1}{j+2}\frac{n}{n-1}a^j \binom{n-1}{j+1} 
+\]
+Note that both summations have a common $\frac{a^j}{n-1}$ term, further reducing the problem to showing that
+\[
+\sum_{j=2}^{n-4} \left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) 
+ = \sum_{j=2}^{n-4}\frac{j+1}{j+2}n \binom{n-1}{j+1} 
+\]
+Now, we can compare the two summations term-by-term. Let's transform the left side of this equation.
+\begin{eqnarray*}
+& & (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \\
+&=& (n-2 + 1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \\
+&=& \binom{n-2}{j} + (n-2)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \\
+&=& (n-2)\left(\binom{n-2}{j} + \binom{n-2}{j+1}\right) + \binom{n-2}{j} - \binom{n-2}{j+2} \\
+&=& (n-2)\binom{n-1}{j + 1} + \binom{n-2}{j} - \binom{n-2}{j+2} \\
+&=& (n-2)\binom{n-1}{j + 1} + \left( \binom{n-2}{j} + \binom{n-2}{j+1}  \right)-
+\left( \binom{n-2}{j+1} - \binom{n-2}{j+2}  \right)\\
+&=& (n-2)\binom{n-1}{j + 1} + \binom{n-1}{j+1} - \binom{n-1}{j+2}\\
+&=& (n-1)\binom{n-1}{j + 1} - \binom{n-1}{j+2}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-1)!}{(j+2)!(n-(j+3))!}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-1)!(n-(j+2))}{(j+2)(j+1)!(n-(j+2))(n-(j+3))!}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-(j+2))}{(j+2)}\frac{(n-1)!}{(j+1)!(n-(j+2))!}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-(j+2))}{(j+2)}\binom{n-1}{j+1}\\
+&=& \left( (n-1)- \frac{(n-(j+2))}{(j+2)} \right)\binom{n-1}{j+1}\\
+&=& \left( (n-1)- \left(\frac{n}{j+2} - 1\right) \right)\binom{n-1}{j+1}\\
+&=& \left( n- \frac{n}{j+2} \right)\binom{n-1}{j+1}\\
+&=& n\left(1 - \frac{1}{j+2} \right)\binom{n-1}{j+1}\\
+&=& n\frac{j+1}{j+2} \binom{n-1}{j+1}\\
+\end{eqnarray*}
+Whew! The two descriptions of $\mu_n(a)$ are equivalent.
+
+
 \end{document}
