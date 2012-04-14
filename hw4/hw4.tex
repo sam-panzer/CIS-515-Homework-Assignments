@@ -308,16 +308,29 @@ We will work without the leading factor of $\frac{1}{n(\epsilon_k + 1)}$ to simp
 &=& \sum_{j=0}^{n-2}(n-1)x^{j+2} \binom{n-2}{j} +
     \sum_{j=0}^{n-3}(n-2)x^{j+2} \binom{n-2}{j+1} -
     \sum_{j=0}^{n-4}x^{j+2} \binom{n-2}{j+2} + 1\\
+&& \textrm{Here we substituted $j=j+1$, and the $j=-1$ term is 0 so we can just include it.}\\
 &=& \sum_{j=1}^{n-4}(n-1)x^{j+2} \binom{n-2}{j} + 
     (n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) +\\
     && \sum_{j=1}^{n-4}(n-2)x^{j+2} \binom{n-2}{j+1} +
     (n-2)\left( x^{n-1} + (n-2)x^2 \right) -
     \sum_{j=1}^{n-4}x^{j+2} \binom{n-2}{j+2} - \frac{1}{2}(n-2)(n-3)x^2 + 1\\
-    &=& x^2(n-1)\sum_{j=1}^{n-4}\frac{1}{n-1}
+    &=& x^2(n-1)\sum_{j=1}^{n-4}x^j\frac{1}{n-1}
       \left( (n-1) \binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) +\\
       && (n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) + (n-2)\left( x^{n-1} + (n-2)x^2 \right) - \frac{1}{2}x^2 (n-2)(n-1) + 1\\
+&&\textrm{The sum is identical to the one in $\epsilon_{k+1}$, so it remains to get $\dfrac{1}{2}n + \dfrac{n(n-2)}{n-1} x^{n-3} + x^{n-2}$}\\
+&&\textrm{From Wolfram we get}\\
+&&(n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) + (n-2)\left( x^{n-1} + (n-2)x^2 \right) - \frac{1}{2}x^2 (n-2)(n-1)\\
+&=& \dfrac{1}{2}(n^2 (2x^{n-1} + x^2) - 2(x^n -1) + n(-4x^{n-1} + 2x^n - x^2))\\
+&&\textrm{We factor $(n-1)x^2$ out of it to get}\\
+	&=& x^2(n-1) \left( \dfrac{1}{2}n + x^{n-2} + \dfrac{(n-2)n x^{n-3}}{n-1} \right)\\
+&&\textrm{So putting all this together we get}\\
+&&\epsilon_{k+1} = \dfrac{1}{n(\epsilon_k+1)^{n-1}} \epsilon_k^2(n-1)\sum_{j=1}^{n-4}\epsilon_k^j\frac{1}{n-1}
+      \left( (n-1) \binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right)+ \\ 
+&&\dfrac{1}{n(\epsilon_k+1)^{n-1}} \epsilon_k^2(n-1) \left( \dfrac{1}{2}n + \epsilon_k^{n-2} + \dfrac{(n-2)n \epsilon_k^{n-3}}{n-1} \right)\\
+&=& \dfrac{(n-1)}{n} \dfrac{\epsilon_k^2 \mu_n (\epsilon_k)}{(\epsilon_k+1)^{n-1}}\\
 \end{eqnarray*}
-
+as desired.
+\vspace{1cm}
 
 To show that the two expressions for $\mu_n(a)$ are equal, we only need to show that 
 \[ \sum_{j=1}^{n-4} a^j \frac{1}{n-1}\left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) =
