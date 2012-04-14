@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\setcounter{secnumdepth}{0}
+\newcommand{\emptyspace}{\{0\}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\trace}{\textrm{tr}}
+\begin{document}
+
+\begin{center}CIS 515 --- HW4 Extra Credit\\Sam Panzer and Kevin Shi\end{center}
+\subsection{Extra credit (5)}
+We have that
+\[\epsilon_{k+1} = \frac{1}{n(\epsilon_k + 1)^{n-1} }
+\left( \epsilon_k(\epsilon_k + 1)((n-1) \epsilon_k + (n-2)) + 1 - (\epsilon_k + 1)^{n-2} \right)\]
+
+We will work without the leading factor of $\frac{1}{n(\epsilon_k + 1)}$ to simplify the algebra; also let $x = \epsilon_k$ as a shorthand. Then
+
+\begin{eqnarray*}
+&& x(x + 1)^{n-2}((n-1) x + (n-2)) + 1 - (x + 1)^{n-2}\\
+&=& (x+1)^{n-2}\left( (n-1)x^2 + (n-2)x - 1 \right) + 1 \\
+&=& \sum_{j=0}^{n-2}x^j \binom{n-2}{j}\left( (n-1)x^2 + (n-2)x - 1 \right) + 1 \\
+&=& \sum_{j=0}^{n-2}(n-1)x^2 x^j \binom{n-2}{j} +
+    \sum_{j=0}^{n-2}(n-2)x x^j \binom{n-2}{j} -
+    \sum_{j=0}^{n-2}x^j \binom{n-2}{j} + 1\\
+&=& \sum_{j=0}^{n-2}(n-1)x^{j+2} \binom{n-2}{j} +
+    \sum_{j=0}^{n-3}(n-2)x^{j+2} \binom{n-2}{j+1} -
+    \sum_{j=0}^{n-4}x^{j+2} \binom{n-2}{j+2} + 1\\
+&& \textrm{Here we substituted $j=j+1$, and the $j=-1$ term is 0 so we can just include it.}\\
+&=& \sum_{j=1}^{n-4}(n-1)x^{j+2} \binom{n-2}{j} + 
+    (n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) +\\
+    && \sum_{j=1}^{n-4}(n-2)x^{j+2} \binom{n-2}{j+1} +
+    (n-2)\left( x^{n-1} + (n-2)x^2 \right) -
+    \sum_{j=1}^{n-4}x^{j+2} \binom{n-2}{j+2} - \frac{1}{2}(n-2)(n-3)x^2 + 1\\
+    &=& x^2(n-1)\sum_{j=1}^{n-4}x^j\frac{1}{n-1}
+      \left( (n-1) \binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) +\\
+      && (n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) + (n-2)\left( x^{n-1} + (n-2)x^2 \right) - \frac{1}{2}x^2 (n-2)(n-1) + 1\\
+&&\textrm{The sum is identical to the one in $\epsilon_{k+1}$, so it remains to get $\dfrac{1}{2}n + \dfrac{n(n-2)}{n-1} x^{n-3} + x^{n-2}$}\\
+&&\textrm{From Wolfram we get}\\
+&&(n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) + (n-2)\left( x^{n-1} + (n-2)x^2 \right) - \frac{1}{2}x^2 (n-2)(n-1)\\
+&=& \dfrac{1}{2}(n^2 (2x^{n-1} + x^2) - 2(x^n -1) + n(-4x^{n-1} + 2x^n - x^2))\\
+&&\textrm{We factor $(n-1)x^2$ out of it to get}\\
+	&=& x^2(n-1) \left( \dfrac{1}{2}n + x^{n-2} + \dfrac{(n-2)n x^{n-3}}{n-1} \right)\\
+\end{eqnarray*}
+\begin{eqnarray*}
+&&\textrm{So putting all this together we get}\\
+&&\epsilon_{k+1} = \dfrac{1}{n(\epsilon_k+1)^{n-1}} \epsilon_k^2(n-1)\sum_{j=1}^{n-4}\epsilon_k^j\frac{1}{n-1}
+      \left( (n-1) \binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right)+ \\ 
+&&\dfrac{1}{n(\epsilon_k+1)^{n-1}} \epsilon_k^2(n-1) \left( \dfrac{1}{2}n + \epsilon_k^{n-2} + \dfrac{(n-2)n \epsilon_k^{n-3}}{n-1} \right)\\
+&=& \dfrac{(n-1)}{n} \dfrac{\epsilon_k^2 \mu_n (\epsilon_k)}{(\epsilon_k+1)^{n-1}}\\
+\end{eqnarray*}
+as desired.
+\vspace{1cm}
+
+To show that the two expressions for $\mu_n(a)$ are equal, we only need to show that 
+\[ \sum_{j=1}^{n-4} a^j \frac{1}{n-1}\left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) =
+\frac{n(n-2)}{3}a + \sum_{j=2}^{n-4}\frac{j+1}{j+2}\frac{n}{n-1}a^j \binom{n-1}{j+1} 
+\]
+First, we'll pull off the $j = 1$ term on the left, and show it's equal to the part not included in the summation on the right.
+When $j=1$, we have
+\begin{eqnarray*}
+& & a\frac{1}{n-1}\left( (n-1)\binom{n-2}{1} + (n-2)\binom{n-2}{2} - \binom{n-2}{3} \right) \\
+&=&  a\frac{1}{n-1}\left( (n-1)(n-2) + \frac{1}{2}(n-2)(n-2)(n-3) - \frac{1}{6}(n-2)(n-3)(n-4) \right) \\
+&=&  a\frac{n-2}{6(n-1)}\left(6(n-1) + 3(n-2)(n-3) - (n-3)(n-4) \right) \\
+&=&  a\frac{n-2}{6(n-1)}(2n^2 - 2) =  a\frac{2n(n-1)(n-2)}{6(n-1)} \\
+&=&  a\frac{n(n-2)}{3}
+\end{eqnarray*}
+This leaves the rest of the first summation, but with $j$ starting at $2$. Our goal becomes to show that
+\[
+\sum_{j=2}^{n-4} a^j \frac{1}{n-1}\left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) 
+ = \frac{n(n-2)}{3}a + \sum_{j=2}^{n-4}\frac{j+1}{j+2}\frac{n}{n-1}a^j \binom{n-1}{j+1} 
+\]
+Note that both summations have a common $\frac{a^j}{n-1}$ term, further reducing the problem to showing that
+\[
+\sum_{j=2}^{n-4} \left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) 
+ = \sum_{j=2}^{n-4}\frac{j+1}{j+2}n \binom{n-1}{j+1} 
+\]
+Now, we can compare the two summations term-by-term. Let's transform the left side of this equation.
+\begin{eqnarray*}
+& & (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \\
+&=& (n-2 + 1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \\
+&=& \binom{n-2}{j} + (n-2)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \\
+&=& (n-2)\left(\binom{n-2}{j} + \binom{n-2}{j+1}\right) + \binom{n-2}{j} - \binom{n-2}{j+2} \\
+&=& (n-2)\binom{n-1}{j + 1} + \binom{n-2}{j} - \binom{n-2}{j+2} \\
+&=& (n-2)\binom{n-1}{j + 1} + \left( \binom{n-2}{j} + \binom{n-2}{j+1}  \right)-
+\left( \binom{n-2}{j+1} - \binom{n-2}{j+2}  \right)\\
+&=& (n-2)\binom{n-1}{j + 1} + \binom{n-1}{j+1} - \binom{n-1}{j+2}\\
+&=& (n-1)\binom{n-1}{j + 1} - \binom{n-1}{j+2}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-1)!}{(j+2)!(n-(j+3))!}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-1)!(n-(j+2))}{(j+2)(j+1)!(n-(j+2))(n-(j+3))!}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-(j+2))}{(j+2)}\frac{(n-1)!}{(j+1)!(n-(j+2))!}\\
+&=& (n-1)\binom{n-1}{j + 1} - \frac{(n-(j+2))}{(j+2)}\binom{n-1}{j+1}\\
+&=& \left( (n-1)- \frac{(n-(j+2))}{(j+2)} \right)\binom{n-1}{j+1}\\
+&=& \left( (n-1)- \left(\frac{n}{j+2} - 1\right) \right)\binom{n-1}{j+1}\\
+&=& \left( n- \frac{n}{j+2} \right)\binom{n-1}{j+1}\\
+&=& n\left(1 - \frac{1}{j+2} \right)\binom{n-1}{j+1}\\
+&=& n\frac{j+1}{j+2} \binom{n-1}{j+1}\\
+\end{eqnarray*}
+Whew! The two descriptions of $\mu_n(a)$ are equivalent.
+\subsection{(6)}
+For $j\ge 1$, the coefficient of $a^j$ in $a\mu_n$ corresponds to the coefficient $a^{j+1}$ in $\mu_n$, which occurs in the summation. So this coefficient is \[\dfrac{(j)n}{(j+1)(n-1)} \dbinom{n-1}{j}\] 
+
+The coefficient of $a^j$ in $(a+1)^{n-1}-1$ is 
+\[\dbinom{n-1}{j}\]
+
+For $n> j$ we have 
+\[jn \le jn + n - j - 1 = (n-1)(j+1) \Longrightarrow \dfrac{j}{j+1} \le \dfrac{n-1}{n} \Longrightarrow \dfrac{jn}{(j+1)(n-1)} \le 1\]
+
+Thus
+\[\dfrac{(j)n}{(j+1)(n-1)} \dbinom{n-1}{j} \le \dbinom{n-1}{j}\]
+
+We see that the inequality is strict if $n-j>1$ since then $n-j-1>0$, so for $n\ge 3$ and $j\le n-2$, the inequality is strict. 
+
+For the last statement, we have
+\[\eta_{n,k+1} = \mu_n(\epsilon_1) \left(\dfrac{n-1}{n}\right) \dfrac{\epsilon_k^2 \mu_n (\epsilon_k)}{(\epsilon_k +1)^{n-1}} =  \left(\dfrac{n-1}{n}\right) \eta_{n,k}^2 \dfrac{\mu_n(\epsilon_k)}{\mu_n(\epsilon_1)} \dfrac{1}{(\epsilon_k+1)^{n-1}}\]
+
+Now $\epsilon_1 \ge \epsilon_k$ so $\dfrac{\mu_n(\epsilon_k)}{\mu_n(\epsilon_1)} \le 1$, and also $(1+\epsilon_k)>1$ so $\dfrac{1}{(\epsilon_k+1)^{n-1}} \le 1$. Thus we get
+\[\eta_{n,k+1} \le \left(\dfrac{n-1}{n}\right) \eta_{n,k}^2\]
+
+\end{document}
