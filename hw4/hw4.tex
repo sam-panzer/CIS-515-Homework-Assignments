@@ -294,7 +294,32 @@ The requested plots. One which converges quickly $(<100)$ and one which converge
 
 
 \subsection{Extra credit (5)}
-To show that the two expressions are equal, we only need to show that 
+We have that
+\[\epsilon_{k+1} = \frac{1}{n(\epsilon_k + 1)^{n-1} }
+\left( \epsilon_k(\epsilon_k + 1)((n-1) \epsilon_k + (n-2)) + 1 - (\epsilon_k + 1)^{n-2} \right)\]
+We will work without the leading factor of $\frac{1}{n(\epsilon_k + 1)}$ to simplify the algebra; also let $x = \epsilon_k$ as a shorthand. Then
+\begin{eqnarray*}
+&& x(x + 1)^{n-2}((n-1) x + (n-2)) + 1 - (x + 1)^{n-2}\\
+&=& (x+1)^{n-2}\left( (n-1)x^2 + (n-2)x - 1 \right) + 1 \\
+&=& \sum_{j=0}^{n-2}x^j \binom{n-2}{j}\left( (n-1)x^2 + (n-2)x - 1 \right) + 1 \\
+&=& \sum_{j=0}^{n-2}(n-1)x^2 x^j \binom{n-2}{j} +
+    \sum_{j=0}^{n-2}(n-2)x x^j \binom{n-2}{j} -
+    \sum_{j=0}^{n-2}x^j \binom{n-2}{j} + 1\\
+&=& \sum_{j=0}^{n-2}(n-1)x^{j+2} \binom{n-2}{j} +
+    \sum_{j=0}^{n-3}(n-2)x^{j+2} \binom{n-2}{j+1} -
+    \sum_{j=0}^{n-4}x^{j+2} \binom{n-2}{j+2} + 1\\
+&=& \sum_{j=1}^{n-4}(n-1)x^{j+2} \binom{n-2}{j} + 
+    (n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) +\\
+    && \sum_{j=1}^{n-4}(n-2)x^{j+2} \binom{n-2}{j+1} +
+    (n-2)\left( x^{n-1} + (n-2)x^2 \right) -
+    \sum_{j=1}^{n-4}x^{j+2} \binom{n-2}{j+2} - \frac{1}{2}(n-2)(n-3)x^2 + 1\\
+    &=& x^2(n-1)\sum_{j=1}^{n-4}\frac{1}{n-1}
+      \left( (n-1) \binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) +\\
+      && (n-1)\left( x^n + x^{n-1}(n-2) + x^2 \right) + (n-2)\left( x^{n-1} + (n-2)x^2 \right) - \frac{1}{2}x^2 (n-2)(n-1) + 1\\
+\end{eqnarray*}
+
+
+To show that the two expressions for $\mu_n(a)$ are equal, we only need to show that 
 \[ \sum_{j=1}^{n-4} a^j \frac{1}{n-1}\left( (n-1)\binom{n-2}{j} + (n-2)\binom{n-2}{j+1} - \binom{n-2}{j+2} \right) =
 \frac{n(n-2)}{3}a + \sum_{j=2}^{n-4}\frac{j+1}{j+2}\frac{n}{n-1}a^j \binom{n-1}{j+1} 
 \]
