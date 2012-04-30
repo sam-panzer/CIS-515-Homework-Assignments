@@ -1,0 +1,324 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\setcounter{secnumdepth}{0}
+\newcommand{\emptyspace}{\{0\}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\trace}{\textrm{tr}}
+\newcommand{\simtwo}{\textbf{SIM(2)}}
+\newcommand{\norm}[1]{||#1||}
+\newcommand{\bignorm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\twomatrix}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4 \end{array}\right)}
+
+\begin{document}
+
+\begin{center}CIS 515 --- HW5\\Sam Panzer and Kevin Shi\end{center}
+\subsection{B1}
+Let $\alpha =\norm{A} \geq 0$, and note that $\norm{A^p} \leq \norm{A}^p$ by the definition of a matrix norm.
+Then 
+\begin{eqnarray*}
+\bignorm{I + \sum_{k=1}^m \frac{A^k}{k!}} &\leq&
+\norm{I} + \sum_{k=1}^m \frac{\norm{A^k}}{k!} \text{,  by triangle inequality }\\
+&\leq& 1 + \sum_{k=1}^m \frac{\alpha^k}{k!} = \sum_{k=0}^m \frac{\alpha^k}{k!}\\
+&\leq& \sum_{k=1}^\infty \frac{\alpha^k}{k!} = e^\alpha = e^{\norm{A}}
+\end{eqnarray*}
+Thus
+\[ \bignorm{I + \sum_{k=1}^m \frac{A^k}{k!}} \leq e^\norm{A}\]
+And since this sum is monotonic increasing and bounded above, it must have a limit.
+Since the norms of the matrices in the sequence $E_m$ converge, the sequence itself must converge.
+Therefore it is well-defined to denote the limit of this sequence by $e^A$.
+
+\subsection{B2}
+\subsubsection{(a)}
+Note that these matrices are spanned by this linear combination:
+\[
+\theta \left(\begin{array}{ccc}
+  0 & -1 & 0\\
+  1 & 0 & 0 \\
+  0 & 0 & 0 
+\end{array}\right) 
++
+u \left(\begin{array}{ccc}
+  0 & 0 & 1\\
+  0 & 0 & 0 \\
+  0 & 0 & 0 
+\end{array}\right) 
++
+v \left(\begin{array}{ccc}
+  0 & 0 & 0\\
+  0 & 0 & 1 \\
+  0 & 0 & 0 
+\end{array}\right) 
+\]
+And the three component matrices are clearly linearly independent, because they do not share any nonzero entries.
+%It's also clear that adding two such matrices, or multiplying them by an element of $\reals$ gives another vector in this set; the matrices $0$ and $I$ inherit their behavior from $M_3(\reals)$
+Thus this is a subspace of $M_3(\reals)$ and isomorphic to $(\reals^3,+)$
+
+Now consider $B = (\theta, u, v)$ and $C = (\theta', u', v')$.  Then 
+\[
+BC = 
+\left(\begin{array}{ccc}
+  -\theta\theta' & 0 & -\theta v'\\
+  0 & -\theta \theta' & -\theta u' \\
+  0 & 0 & 0 
+\end{array}\right)  \text{ and }
+CB = 
+\left(\begin{array}{ccc}
+  -\theta\theta' & 0 & -\theta' v\\
+  0 & -\theta \theta' & -\theta' u \\
+  0 & 0 & 0 
+\end{array}\right)
+\]
+Note that the primes switched places, which shows that $BC$ is not necessarily equal to $CB$.
+
+\subsubsection{(b)}
+First, let $\theta = 0$. We then have that 
+\[ B = 
+\left(\begin{array}{ccc}
+  0 & 0 & u \\
+  0 & 0 & v \\
+  0 & 0 & 0 
+\end{array}\right) 
+\]
+Note that $B^2 = 0$. We immediately see that 
+\[ e^B = I + \sum_{k=1}^\infty \frac{B^k}{k!} = 
+         I + B + \sum_{k=2}^\infty \frac{B^k}{k!} =
+         I + B + \sum_{k=2}^\infty \frac{0}{k!} = I + B
+\]
+
+For the second case ($\theta \neq 0$), we do a similar simplification.
+\[
+B^3 = B\cdot B^2 = B \cdot 
+\left(\begin{array}{ccc}
+  -\theta & 0 & -v\theta \\
+  0 & -\theta & -u\theta \\
+  0 & 0 & 0 
+\end{array}\right) 
+=
+\left(\begin{array}{ccc}
+  0 & -\theta ^2 & -u\theta^2 \\
+  -\theta^2 & 0 & -v\theta^2 \\
+  0 & 0 & 0 
+\end{array}\right) 
+= -\theta^2 B
+\]
+Then
+\begin{eqnarray*}
+  e^B &=&  I + B + \frac{B^2}{2!} + \frac{B^3}{3!} + \frac{B^4}{4!} + \frac{B^5}{5!} + \frac{B^6}{6!} + \dots \\
+  &=&  I + B + \frac{B^2}{2!} + \frac{-\theta^2 B}{3!} + \frac{-\theta^2 B^2}{4!} + \frac{\theta^4 B}{5!} + \frac{\theta^4 B^2}{6!} + \dots \\
+  &=&  I + \left(B - \frac{\theta^2 B}{3!} + \frac{\theta^4 B}{5!} - \dots \right) + 
+           \left(\frac{B^2}{2!} - \frac{\theta^2 B}{4!} + \frac{\theta^4 B}{6!} - \dots \right)\\
+  &=&  I + B \left(1 - \frac{\theta^2}{3!} + \frac{\theta^4}{5!} - \dots \right) + 
+           B^2\left(\frac{1}{2!} - \frac{\theta^2}{4!} + \frac{\theta^4}{6!} - \dots \right)\\
+\end{eqnarray*}
+Note that $\sin(\theta) = \theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \dots $,
+which means that $\frac{\sin(\theta)}{\theta} = 1 - \frac{\theta^2}{3!} + \frac{\theta^5}{5!} - \dots $
+
+\noindent
+Similarly, $\cos(\theta) = 1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \dots $, so
+$\frac{1 - \cos(\theta)}{\theta^2} = \frac{1}{2!} - \frac{\theta^2}{4!} + \frac{\theta^4}{6!} - \dots $
+
+\noindent
+Thus we have
+\[e^B = I + B\frac{\sin(\theta)}{\theta} + B^2 \frac{1 - \cos(\theta)}{\theta^2} \text{, or }\]
+\[
+  e^B = 
+\left(\begin{array}{ccc}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1 
+\end{array}\right) 
++
+\left(\begin{array}{ccc}
+  0 & -\sin(\theta) & u\frac{\sin(\theta)}{\theta} \\
+  -\sin(\theta) & 0 & v\frac{\sin(\theta)}{\theta} \\
+  0 & 0 & 0 
+\end{array}\right) 
++
+\left(\begin{array}{ccc}
+  \cos(\theta) - 1 & 0 & v\frac{\cos(\theta) - 1}{\theta} \\
+  0 & \cos(\theta) - 1 & u\frac{\cos(\theta) - 1}{\theta} \\
+  0 & 0 & 0 
+\end{array}\right) 
+\]
+which gives the desired result.
+
+\subsubsection{(c)}
+The form of $e^B$ in the previous section confirms that $e^B$ is in \textbf{SE}$(2)$.
+To show injectivity, we let $w_1,w_2 \in \reals$.
+Then all we need to show is that, given $\theta$, we can find $u$ and $v$ such that
+$u\frac{\sin(\theta)}{\theta} + v \frac{\cos(\theta) - 1}{\theta} = w_1$ and
+$u\frac{1-\cos(\theta)}{\theta} + v \frac{\sin(\theta)}{\theta} = w_2$.
+This is equivalent to solving the system
+\[
+\left(\begin{array}{cc}
+\frac{\sin(\theta)}{\theta} & \frac{\cos(\theta) - 1}{\theta} \\
+\frac{1-\cos(\theta)}{\theta} & \frac{\sin(\theta)}{\theta}
+\end{array}\right)
+\binom{u}{v} = \binom{w_1}{w_2} % Abuse of notation? sure!
+\]
+Which is of course solvable with exactly one solution when the determinant of the $2\times2$ matrix $T$ is nonzero.
+Well, we end up with $\det(T) = -\frac{2\cos(\theta)}{\theta}$, which is nonzero (and defined) so long as $\theta \neq k\pi + \frac{\pi}{2}, k \in \ints$ (and we already assumed that $\theta \neq 0$).
+So our map is injective so long as $\theta$ isn't a half-multiple of $\pi$.
+
+\subsection{B3}
+\subsubsection{(a)}
+The group operation is composition, and the identity is the map where $\alpha = 1, \theta = w_1=w_2 =0,$.
+
+Now, we just need to show that if $R\circ S \in$ \simtwo for any $R,S \in$ \simtwo.
+Let $R$ have parameters $(\theta_1, w_1, z_1, \alpha_1)$ and $S$ have parameters $(\theta_1, w_1, z_1, \alpha_1)$. Then
+\begin{eqnarray*}
+  (R \circ S)\binom{x}{y} &=&  R(S\binom{x}{y}) \\
+  &=& \alpha_2 
+    \left(\begin{array}{cc}
+      \cos(\theta_2) & -\sin(\theta_2)\\
+      \sin(\theta_2) & \cos(\theta_2)
+    \end{array}\right) 
+  \left(\alpha_1 
+    \left(\begin{array}{cc}
+      \cos(\theta_1) & -\sin(\theta_1)\\
+      \sin(\theta_1) & \cos(\theta_1)
+    \end{array}\right)\binom{x}{y} + \binom{w_1}{z_1}\right) + \binom{w_2}{z_2}\\
+&=& \alpha_1\alpha_2 \left(\begin{array}{cc}
+      \cos(\theta_1)\cos(\theta_2) -\sin(\theta_1)\sin(\theta_2)& 
+      -\sin(\theta_1)\cos(\theta_2) -\cos(\theta_1)\sin(\theta_2)\\
+      \cos(\theta_1)\sin(\theta_2) +\sin(\theta_1)\cos(\theta_2)& 
+      -\sin(\theta_1)\sin(\theta_2) +\cos(\theta_1)\cos(\theta_2)\\
+    \end{array}\right)\binom{x}{y}\\
+    &&+
+  \left(\begin{array}{cc}
+      \alpha_2\cos(\theta_2)w_1 -\alpha_2\sin(\theta_2)z_1 + w_2 \\
+      \alpha_2\sin(\theta_2)w_1 +\alpha_2\sin(\theta_2)z_1 + z_2 \\
+    \end{array}\right) \\
+    &=& 
+  \alpha_1\alpha_2\left(\begin{array}{cc}
+      \cos(\theta_1 + \theta_2) & -\sin(\theta_1 + \theta_2)\\
+      \sin(\theta_1 + \theta_2) & \cos(\theta_1 + \theta_2)
+    \end{array}\right)\binom{x}{y} +
+  \left(\begin{array}{cc}
+      \alpha_2\cos(\theta_2)w_1 -\alpha_2\sin(\theta_2)z_1 + w_2 \\
+      \alpha_2\sin(\theta_2)w_1 +\alpha_2\cos(\theta_2)z_1 + z_2 \\
+    \end{array}\right) \\
+\end{eqnarray*}
+Which is also in \simtwo.
+This formulation shows that for $R$ to be $S^{-1}$, we need $R$'s parameters to be
+\begin{eqnarray*}
+  \theta_2 &=&  -\theta_1\\
+  w_1 &=& \alpha_1^{-1}(\sin(-\theta_1)z_1 - \cos(-\theta_1)w_1)\\
+  z_1 &=& \alpha_1^{-1}(\cos(-\theta_1)z_1 + \cos(-\theta_1)w_1)\\
+  \alpha_2 &=&  \alpha_1^{-1}
+\end{eqnarray*}
+Substituting this into the above equality gives $(R \circ S) \binom{x}{y} = \binom{x}{y}$, the identity element, so $R = S^{-1}$
+\subsubsection{(b)}
+We're looking at a subspace of $\reals^9$, such that there are only four distinct parameters.
+We can therefore express any element of $\mathfrak{sim}(2)$ as
+\[
+\lambda \left(\begin{array}{ccc}
+      1 & 0 & 0\\
+      0 & 1 & 0\\
+      0 & 0 & 0
+    \end{array}\right) 
+ + \theta \left(\begin{array}{ccc}
+      0 & -1 & 0\\
+      1 & 0 & 0\\
+      0 & 0 & 0
+    \end{array}\right) 
+ + u\left(\begin{array}{ccc}
+      0 & 0 & 1\\
+      0 & 0 & 0\\
+      0 & 0 & 0
+    \end{array}\right) 
+ + v\left(\begin{array}{ccc}
+      0 & 0 & 0\\
+      0 & 0 & 1\\
+      0 & 0 & 0
+    \end{array}\right) 
+\]
+This makes it clear that the four matrices span $\mathfrak{sim}(2)$; they are also clearly linearly independent.
+We therefore have a simple bijection between $\mathfrak{sim}(2)$ and $\reals^4$.
+Thus $\mathfrak{sim}(2)$ is isomorphic to $\reals^4$.
+\subsubsection{(c)}
+If we let follow the suggestion and let $\Omega$ and $J$ be defined as in the assignment,
+we can verify that $J^2 = -I$ by high technology.
+Now, we need to show this by induction on $k$:
+\[ \Omega^k = \frac{1}{2}\left((\lambda + i\theta)^k + (\lambda + i\theta)^k \right)I
+  + \frac{1}{2i}\left((\lambda + i\theta)^k - (\lambda + i\theta)^k \right) J\]
+We start with a base case of $k=0$, using the convention that $A^0 = I$ for any square matrix $A$:
+For the base case, $\Omega^0 = I$, so we just need to show that the expression evaluates to $I$.
+\[
+  \frac{1}{2}\left((\lambda + i\theta)^0 + (\lambda + i\theta)^0 \right)
+  + \frac{1}{2i}\left((\lambda + i\theta)^0 - (\lambda + i\theta)^0 \right) = \frac{1}{2} (2I) + \frac{1}{2i}(0)J = I
+\]
+
+We now assume that that this equality holds for $k$, and try to show tha it is also true for $k+1$.
+\begin{eqnarray*}
+\Omega^{k+1} &=&  \Omega^k \cdot \Omega\\
+&=& \left( \frac{1}{2}\left((\lambda + i\theta)^k + (\lambda + i\theta)^k \right)I
+  + \frac{1}{2i}\left((\lambda + i\theta)^k - (\lambda + i\theta)^k \right)J \right)(\lambda I + \theta J)\\
+  &=& \frac{1}{2}\lambda\left( (\lambda + i\theta)^k + (\lambda - i\theta)^k \right)I  
+     - \frac{1}{2i}\theta\left( (\lambda - i\theta)^k - (\lambda - i\theta)^k \right)I +\\
+  &&  \frac{1}{2i}\lambda\left( (\lambda + i\theta)^k + (\lambda - i\theta)^k \right)J +
+      \frac{1}{2}\theta\left( (\lambda + i\theta)^k + (\lambda - i\theta)^k \right)J\\
+  &=& \frac{1}{2}\left( \lambda(\lambda + i\theta) + \lambda(\lambda - i\theta)^k +
+                        i\theta(\lambda + i\theta)^k - i\theta(\lambda-i\theta)\right)I + \\
+  && \frac{1}{2i}\left( \lambda(\lambda + i\theta) - \lambda(\lambda - i\theta)^k +
+                        i\theta(\lambda + i\theta)^k + i\theta(\lambda-i\theta)\right)J\\
+  &=& \frac{1}{2}\left((\lambda + i\theta)(\lambda + i\theta)^k +
+                       (\lambda - i\theta)(\lambda - i\theta)^k \right)I + \\
+  && \frac{1}{2}\left((\lambda + i\theta)(\lambda + i\theta)^k -
+                       (\lambda - i\theta)(\lambda - i\theta)^k \right)J \\
+  &=& \frac{1}{2}\left((\lambda + i\theta)^{k+1} + (\lambda - i\theta)^{k+1} \right)I
+  + \frac{1}{2i}\left((\lambda + i\theta)^{k+1} - (\lambda + i\theta)^{k+1} \right) J
+\end{eqnarray*}
+With that done, we cna now look at
+\begin{eqnarray*}
+  e^\Omega &=&  \sum_{k=0}^\infty\frac{1}{k!}\Omega^k\\
+  &=& \sum_{k=0}^\infty \frac{1}{k!}\left[ \frac{1}{2}\left((\lambda + i\theta)^k + (\lambda - i\theta)^k \right)I
+    +\frac{1}{2i}\left((\lambda + i\theta)^k - (\lambda + i\theta)^k \right)J \right]\\
+    &=& \frac{1}{2}I\left( \sum_{k=0}^\infty \frac{1}{k!}(\lambda + i\theta)^k +
+            \sum_{k=0}^\infty \frac{1}{k!}(\lambda - i\theta)^k\right)
+    +\frac{1}{2i}J\left(\sum_{k=0}^\infty \frac{1}{k!}(\lambda + i\theta)^k - 
+    \sum_{k=1}^\infty \frac{1}{k!}(\lambda + i\theta)^k \right)\\
+    &=& \frac{1}{2} \left( e^{\lambda + i\theta} + e^{\lambda - i\theta}  \right)I +
+       \frac{1}{2i} \left( e^{\lambda + i\theta} - e^{\lambda - i\theta}  \right)J +\\
+    &=& e^\lambda(\cos(\theta)I + \sin(\theta)J)\\
+    &=& e^\lambda\twomatrix{\cos(\theta)}{-\sin(\theta)}{\sin(\theta)}{\cos(\theta)}
+\end{eqnarray*}
+Whew!
+\subsubsection{(d)}
+We'll do this first proof by induction.
+The base case is verified by $B^1 = \twomatrix{\Omega}{U}{0}{0}$. And the inductive case is
+\[B^{n+1} = B^n\cdot B = \twomatrix{\Omega^n}{\Omega^{n-1} U}{0}{0} \twomatrix{\Omega}{U}{0}{0}
+          = \twomatrix{\Omega^{n+1}}{ \Omega^n U}{0}{0}\]
+
+Now, 
+\begin{eqnarray*}
+  e^B &=&  I + \sum_{k=1}^\infty \frac{1}{k!}\twomatrix{\Omega^k}{\Omega^{k-1}U}{0}{0}\\
+  %&=& I + \sum_{k=1}^\infty \twomatrix{I +\frac{1}{k!}\Omega^k}{\frac{1}{k!}\Omega^{k-1}U}{0}{0}\\
+  &=& \twomatrix{I + \sum_{k=1}^\infty \frac{1}{k!}\Omega^k}{\sum_{k=1}^\infty \frac{1}{k!}\Omega^{k-1}U}{0}{1}\\
+\end{eqnarray*}
+The upper-left entry is just the definition of $e^B$, and the upper-right entry is
+\[
+\sum_{k=1}^\infty \frac{1}{k!}\Omega^{k-1}U = I + \sum_{k=2}^\infty \frac{1}{k!}\Omega^{k-1}U 
+= I + \sum_{k=1}^\infty \frac{1}{(k+1)!}\Omega^{k}U \text{ as desired }
+\]
+
+\subsubsection{(e)}
+Let's start by unfolding the definition of the integral.
+\begin{eqnarray*}
+  \int_0^1 e^{\Omega t}dt &=& \int_0^1 Idt + \int_0^1 \left( \sum_{k=1}^\infty \frac{t^k\Omega^k}{k!} \right) dt\\
+  &=& I + \sum_{k=1}^\infty\left( \int_0^1 \frac{t^k}{k!}\Omega^k \right)
+  = I + \sum_{k=1}^\infty\left( \Omega^k \int_0^1 \frac{t^k}{k!}\right)\\
+  &=&  I + \sum_{k=1}^\infty\left( \Omega^k \left[\frac{t^{k+1}}{(k+1)!}\right]_0^1\right)
+  = I + \sum_{k=1}^\infty \frac{\Omega^k }{(k+1)!} = V
+\end{eqnarray*}
+This, of course, depends on the power series of a matrix being uniformly convergent, since we switch the integral and summation on the second line.
+I will assume that power series of matrices are uniformly convergent just as power series of complex numbers are, and that the result I'm relying on (that we can switch these operations) goes through without a hitch.
+
+Then, if $\theta = \lambda = 0$, then $\Omega = 0$, so $V = I + \sum_{k=1}^\infty \frac{0^k}{(k+1)!} = I$.
+\end{document}
