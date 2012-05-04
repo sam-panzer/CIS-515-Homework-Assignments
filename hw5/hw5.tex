@@ -14,6 +14,7 @@
 \newcommand{\norm}[1]{||#1||}
 \newcommand{\bignorm}[1]{\left|\left|#1\right|\right|}
 \newcommand{\twomatrix}[4]{\left(\begin{array}{cc} #1 & #2\\ #3 & #4 \end{array}\right)}
+\newcommand{\threematrix}[9]{\left(\begin{array}{ccc} #1 & #2 & #3\\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{array}\right)}
 
 \begin{document}
 
@@ -275,7 +276,7 @@ We now assume that that this equality holds for $k$, and try to show tha it is a
   &=& \frac{1}{2}\left((\lambda + i\theta)^{k+1} + (\lambda - i\theta)^{k+1} \right)I
   + \frac{1}{2i}\left((\lambda + i\theta)^{k+1} - (\lambda + i\theta)^{k+1} \right) J
 \end{eqnarray*}
-With that done, we cna now look at
+With that done, we can now look at
 \begin{eqnarray*}
   e^\Omega &=&  \sum_{k=0}^\infty\frac{1}{k!}\Omega^k\\
   &=& \sum_{k=0}^\infty \frac{1}{k!}\left[ \frac{1}{2}\left((\lambda + i\theta)^k + (\lambda - i\theta)^k \right)I
@@ -285,7 +286,7 @@ With that done, we cna now look at
     +\frac{1}{2i}J\left(\sum_{k=0}^\infty \frac{1}{k!}(\lambda + i\theta)^k - 
     \sum_{k=1}^\infty \frac{1}{k!}(\lambda + i\theta)^k \right)\\
     &=& \frac{1}{2} \left( e^{\lambda + i\theta} + e^{\lambda - i\theta}  \right)I +
-       \frac{1}{2i} \left( e^{\lambda + i\theta} - e^{\lambda - i\theta}  \right)J +\\
+       \frac{1}{2i} \left( e^{\lambda + i\theta} - e^{\lambda - i\theta}  \right)J \\
     &=& e^\lambda(\cos(\theta)I + \sin(\theta)J)\\
     &=& e^\lambda\twomatrix{\cos(\theta)}{-\sin(\theta)}{\sin(\theta)}{\cos(\theta)}
 \end{eqnarray*}
@@ -321,4 +322,92 @@ This, of course, depends on the power series of a matrix being uniformly converg
 I will assume that power series of matrices are uniformly convergent just as power series of complex numbers are, and that the result I'm relying on (that we can switch these operations) goes through without a hitch.
 
 Then, if $\theta = \lambda = 0$, then $\Omega = 0$, so $V = I + \sum_{k=1}^\infty \frac{0^k}{(k+1)!} = I$.
+\subsubsection{(f)}
+Let $s \in \textbf{SIM}(2)$. Then we can construct a $B \in \mathfrak{sim}(2)$ such that $e^B = s$.
+We set $\lambda = \log(\alpha)$ and $\theta_B = \theta_s$.
+Finally, we just need to show that we can find $u_B, v_B$ such that $ \binom{u_s}{v_s} = VU = \binom{u}{v}$.
+\textbf{TODO!}
+
+\subsection{B4}
+\subsubsection{(a)} Checked. (I'm really not sure how to show any work, since the answer is in the assignment.)
+\subsubsection{(b)}
+We can express any element of $U$ as this linear combination of three linearly independent matrices:
+\[ u_1\threematrix{0}{0}{0}{0}{0}{-1}{0}{1}{0} + 
+   u_2\threematrix{0}{0}{1}{0}{0}{0} {-1}{0} {0} +
+   u_3\threematrix{0}{-1}{0}{1}{0}{0}{0}{0}{0} \]
+As we can see from setting $u_1 = u_2 = u_3 = 0$, this subspace of $M_3$ is a 3-dimensional vector space of real numbers, namely $\reals^3$.
+
+We know thate these matrices are never invertible, since we can always find a nontrivial kernel (as happens in the next line).
+Or we could calculate the determinant to 0, since $-u_3u_1u_2 + u_2u_3u_1 = 0$.
+
+The kernel can be found by looking at (a), where we notice that each entry is $0$ precisely when $u_1 = v_1, u_2 = v_2, u_3 = v_3$.
+(The kernel is one-dimensional, since row-reduction shows that $U$ has dimension 2).
+Thus the kernel is ${\alpha(u_1, u_2, u_3) | \alpha \in \reals}$.
+The linear map $U$ rotates its input $(v_1, v_2, v_3)$ to be orthogonal to both $(u_1, u_2, u_3)$ and $(v_1, v_2, v_3)$, and multiplies the length of the input vector by the length of $(u_1, u_2, u_3)$ and product of the sine of the angle between $(u_1, u_2, u_3)$.
+
+If $(u_1, u_2, u_3) \cdot (v_1, v_2, v_3) = 0$, then $UV = $ \textbf{TODO!}
+
+\subsection{(B5)}
+\subsubsection{(a)}
+\begin{eqnarray*}
+  A^2 &=& 
+  \left( \begin{array}{ccc}
+  -b^2 - c^2 & ab & ac\\
+  ab & -a^2 - c^2 & bc\\
+  ac & bc & -a^2 - b^2
+  \end{array}\right) = 
+  \left( \begin{array}{ccc}
+  a^2 -(a^2 + c^2 + b^2) & ab & ac\\
+  ab & b^2 -(a^2 + c^2 + b^2)& bc\\
+  ac & bc & c^2 -(a^2 + c^2 + b^2)
+  \end{array}\right) \\
+  &=& -\threematrix{(a^2+b^2+c^2)}{0}{0}{0}{(a^2+b^2+c^2)}{0}{0}{0}{(a^2+b^2+c^2)}
+  + B = -\theta^2 + B
+\end{eqnarray*}
+When computing $AB$ and $BA$, each entry ends up being $abc - abc = 0$, so $AB = 0$.
+Then, \[A^3 = A\cdot A^2 = A(-\theta^2I + B) = -\theta^2A + AB = -\theta^2A\].
+
+\subsubsection{(b)}
+\begin{eqnarray*}
+  e^A &=&  I + \sum_{k=1}^\infty \frac{A^k}{k!} = 
+  I + A + \frac{A^2}{2!} + \frac{A^3}{3!} + \frac{A^4}{4!} + \frac{A^5}{5!} + \dots \\
+  &=& I + A + \frac{A^2}{2!} -\theta^2 \frac{A}{3!} -\theta^2 \frac{A^2}{4!} + \theta^4 \frac{A}{5!} +  \theta^4 \frac{A^2}{6!} \dots \\
+  &=& I + \left(A - \theta^2 \frac{A}{3!} + \theta^4 \frac{A}{5!} + \dots \right) + \left( \frac{A^2}{2!} - \theta^2 \frac{A^2}{4!}  \theta^4 \frac{A^2}{6!} + \dots \right)\\
+  &=& I + A\left(1 - \theta^2 \frac{1}{3!} + \theta^4 \frac{1}{5!} + \dots \right) + A^2\left( \frac{1^2}{2!} - \theta^2 \frac{1^2}{4!}  \theta^4 \frac{1^2}{6!} + \dots \right)
+ \end{eqnarray*}
+ As in question B2, we note that 
+$\frac{\sin(\theta)}{\theta} = 1 - \frac{\theta^2}{3!} + \frac{\theta^5}{5!} - \dots $.
+And
+$\frac{1 - \cos(\theta)}{\theta^2} = \frac{1}{2!} - \frac{\theta^2}{4!} + \frac{\theta^4}{6!} - \dots $
+
+So we have $e^A = I + \frac{\sin(\theta)}{\theta}A + \frac{1-\cos(\theta)}{\theta^2}A^2$.
+Given that did the \textsl{same exact computation} as in B2, we unsurprisingly got the same result!
+
+\subsubsection{(c)}
+Given that $A^3 = -\theta^2A$, we notice that $A^3 + \theta^2A = 0$.
+Its characteristic polynomial happens to be $\lambda^3 + (a^2 + b^2 + c^2)\lambda = 0$, or $\lambda^3 + \theta^2\lambda = 0$.
+This is easily solvable, and we find that $\lambda = 0, \pm i\theta$.
+
+We can then find the eigenvalues of $e^A$ by pluggin in $A$'s eigenvalues to the formula for $e^A$.
+This works because any eigenvector of $A$ is an eigenvector of $A^2$ (with the eigenvalue squared), and every vector is an eigenvector of $I$ with eigenvalue 1.
+
+We therefore find that, for $\lambda=0$, we get the eigenvalue $1$;
+for $\lambda=\pm i\theta$, we get
+\[1 + \frac{\sin(\theta)}{\theta}(\pm i\theta) + \frac{1-\cos(\theta)}{\theta^2}(\pm i\theta)^2
+= 1 \pm i\sin(\theta) - 1 + \cos(\theta) = \cos(\theta) \pm i\sin(\theta)
+= e^{\pm i\theta}\]
+And all three of these eigenvalues for $e^A$ have eigenvalue 1, which means that $e^A$ must be orthogonal, as it has a full set of distinct eigenvalues of unit length.
+
+\subsubsection{(d)}
+We'll just fill in the missing parts that aren't provided in the problem set.
+
+\noindent (2)
+To verify the formula for $\text{exp}^{-1}(R)$, we plug in $e^{\text{exp}^{-1}(R)}$ to get
+
+\begin{eqnarray*}
+e^{\text{exp}^{-1}(R)}&=& 
+I + \frac{\sin(\theta)}{\theta} \frac{\theta}{2\sin(\theta)}(R - R^\top)
++ \frac{1-\cos(\theta)}{\theta^2} \left( \frac{\theta}{2\sin(\theta)}(R - R^\top) \right)^2
+\end{eqnarray*}
+
 \end{document}
