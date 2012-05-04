@@ -410,4 +410,66 @@ I + \frac{\sin(\theta)}{\theta} \frac{\theta}{2\sin(\theta)}(R - R^\top)
 + \frac{1-\cos(\theta)}{\theta^2} \left( \frac{\theta}{2\sin(\theta)}(R - R^\top) \right)^2
 \end{eqnarray*}
 
+\subsection{(B6)}
+
+\subsubsection{(a)} First to show surjectivity, let $v \in \mathbb{R}^3$ be any vector. Then set $v^* = R^{-1} (v - W)$. Clearly $v^* \in \mathbb{R}^3$ since $W \in \mathbb{R}^3$ and $R^{-1}$ exists and has full rank, being a rotation matrix. Then
+
+\[ \rho(v^*) = R v^* + W = R (R^{-1} (v - W)) + W = (v - w) + W = v \]
+
+So $v \in Im \, (\rho) $
+
+And if $\rho(v_1) = \rho(v_2)$, then
+\[ Rv_1 + W = Rv_2 + W \Longrightarrow v_1 = v_2 \]
+
+since we just subtract the $W's$ and multiply by $R^{-1}$. So $\rho$ is injective. 
+
+Now we use the matrix representation to show that $\rho$ is a group, where the group multiplication is just matrix multiplication of the representative matrices of $\rho$, which is composition of $\rho$ . Let $\rho_1 \sim \left(\begin{array}{cc} R_1 & W_1 \\ 0 & 1 \end{array}\right)$ and $\rho_2 \sim \left( \begin{array}{cc} R_2 & W_2 \\ 0 & 1 \end{array}\right)$. Then 
+
+\[\rho_1 \circ \rho_2 \sim \left(\begin{array}{cc} R_1 & W_1 \\ 0 & 1 \end{array}\right) \left( \begin{array}{cc} R_2 & W_2 \\ 0 & 1 \end{array}\right) = \left(\begin{array}{cc} R_1 R_2 & R_1 W_2 + W_1 \\ 0 & 1 \end{array}\right)\]
+
+where we note that we can put the product of the blocks $R_1, R_2$ in the product matrix since the first three columns of the last row are all 0, so thus we just get rows of $R_1$ multiplied by columns of $R_2$. And similarly in computing the top right term we see that it is the sum $(R_1)_{i*} (W_2)_i + (W_1)_i$ over $i=1,2,3$, where $(R_1)_{i*}$ is the $i$th row of $R_1$. 
+
+Since $R_1 R_2$ is still an orthogonal matrix, as orthogonal matrices form a group under multiplication, and $R_1 W_2 + W_1 \in \mathbb{R}^3$, then this is the representation of an affine map with $R = R_1 R_2$ and $W = R_1 2 + W_1$
+
+Thus affine maps are closed under composition. 
+
+The matrix $\left(\begin{array}{cc} R & W \\ 0 & 1 \end{array}\right)$ has determinant $|R| = 1$; we can see this by just doing the determinant expansion on the last row from the right. Thus this matrix is invertible, so it has an inverse (which must be a matrix of the same form by the closure property earlier). 
+
+And the group identity is just the identity matrix formed by setting $R = I_2$ and $W = 0$. 
+
+So this forms a group.
+
+\subsubsection{(b)} 
+
+Let $\vec{W} = (x,y,z)$ be a component decomposition. Then for a matrix $B$, we define the isomorphism  in the canonical way by 
+\[ \phi : (B, *) \longrightarrow (\mathbb{R}^6, +) \]
+\[ \phi(B) \longrightarrow (a,b,c,x,y,z) \]
+
+So adding two matrices of the form $B$ is just adding the parameters, and there are exactly six such parameters. We can choose them arbitrarily to represent any vector in $\mathbb{R}^6$. Injectivity of $\phi$ is obvious. Thus this is an isomorphism. 
+
+For two matrices $B_1, B_2$ with corresponding parameters $(a_1,b_1,c_1,x_1,y_1,z_1)$ and $(a_2,\cdots ,z_2)$, we have
+\[ B_1 * B_2 = \left( \begin{array}{cccc} 0 & -c_1 & b_1 & x_1 \\ c_1 & 0 & -a_1 & y_1 \\ -b_1 & a_1 & 0 & z_1 \\ 0 & 0 & 0 & 0 \end{array}\right) \left( \begin{array}{cccc} 0 & -c_2 & b_2 & x_2 \\ c_2 & 0 & -a_2 & y_2 \\ -b_2 & a_2 & 0 & z_2 \\ 0 & 0 & 0 & 0 \end{array}\right)\]
+
+\[ = \left( \begin{array}{cccc} -c_1 c_2 - b_1 b_2 & b_1 a_2 & c_1 a_2 & -c_1 y_2 + b_1 z_2 \\ -a_1 b_2 & -c_1 c_2 - a_1 a_2 & c_1 b_2 & c_1 x_2 - a_1 z_2 \\ \cdots & \cdots & \cdots & \cdots \end{array}\right)\]
+
+Well these are just the first two rows of the resulting product matrix, but we can already see that if, for example, $b_1 a_2 \neq b_2 a_1$, then the second entry of the first row will be different if we reverse the order of multiplication. Thus in general these matrices do not commute. 
+
+\subsubsection{(c)} 
+
+Let $B_1, B_2$ be two matrices of the form $B$, with $\Omega_1,W_1$ and $\Omega_2,W_2$ as the blocks. Then
+
+\[ B_1 B_2 = \left(\begin{array}{cc} \Omega_1 \Omega_2 & \Omega_1 W_2 \\ 0 & 0 \end{array}\right) \]
+
+where, similarly as in part (b), since the last row of $B_2$ is zero, then we are just multiplying the first three columns of $B_1$ with the first three rows of $B_2$. So we get $\Omega_1 \Omega_2$ in the first 3-by-3 block of the product matrix, and then we get the first 3-by-3 block of $B_1$ multiplied by the last column of $B_2$, which is just $\Omega_1 W_2$.
+
+Thus, we have 
+
+\[ BB = \left( \begin{array}{cc} \Omega^2 & \Omega W \\ 0 & 0 \end{array}\right)\]
+
+and inductively, if the formula holds for $B^{n-1}$, then
+
+\[ B^{n-1} B = \left(\begin{array}{cc} \Omega^n & \Omega^{n-1} \\ 0 & 0 \end{array}\right) \]
+
+
+
 \end{document}
