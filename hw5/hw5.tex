@@ -505,8 +505,65 @@ and so forth. thus we can break up the exponential according to the parity of th
 
 \[e^{\Omega} = I_3 + \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{(2n-1)!} (-\theta^2)^{n-1} \Omega + \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{(2n)!} (-\theta^2)^{n-1} \Omega^2\]
 
-and the coefficients of $\Omega, \Omega^2$ are the power series expansions for 
+and we can rewrite the coefficients of $\Omega, \Omega^2$ as 
 
+\[\dfrac{\Omega}{\theta} \displaystyle\sum_{n=1}^{\infty} \dfrac{(-1)^{n-1}}{(2n-1)!} \theta^{2n-1} + \dfrac{\Omega^2}{\theta^2} \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{(2n)!} (-1)^{n-1} \theta^{2n} \] 
 
+the first summation is the Taylor series expansion of $\sin \theta$ and the latter summation is the negative of the Taylor series expansion of $\cos \theta$ except for the first term, or $1 - \cos \theta$. 
+
+So we get the desired 
+
+\[ e^{\Omega} = I_3+ \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \]
+
+We can do the same thing for $V$:
+
+\[ \displaystyle\sum_{k\ge 1} \dfrac{1}{(k+1)!} \Omega^k = \displaystyle\sum_{k = 1}^{\infty} \dfrac{1}{(2k)!} \Omega^{2k-1} + \displaystyle\sum_{k=1}^{\infty} \dfrac{1}{(2k+1)!} \Omega^{2k} = \Omega \displaystyle\sum_{k = 1}^{\infty} \dfrac{1}{(2k)!} (-\theta^2)^{k-1} + \Omega^2 \displaystyle\sum_{k=1}^{\infty} \dfrac{1}{(2k+1)!} (-\theta^2)^{k-1} \]
+
+\[ = - \dfrac{\Omega}{\theta^2} \displaystyle\sum_{k=1}^{\infty} \dfrac{(-1)^k}{(2k)!} \theta^{2k} + - \dfrac{\Omega^2}{\theta^3} \displaystyle\sum_{k=1}^{\infty} \dfrac{(-1)^k}{(2k+1)!} \theta^{2k+1} = \dfrac{1-\cos \theta}{\theta^2} \Omega + \dfrac{\theta - \sin \theta}{\theta^3} \Omega^2\]
+
+and so 
+
+\[V = I_3 + \dfrac{1-\cos \theta}{\theta^2} \Omega + \dfrac{\theta - \sin \theta}{\theta^3} \Omega^2\]
+
+\subsubsection{(e)}
+
+We will show that the matrix representation of $e^B$ has the form $\left( \begin{array}{cc} R & W \\ 0 & 1 \end{array}\right)$. Recall that $e^B = \left(\begin{array}{cc} e^{\Omega} & VW \\ 0 & 1 \end{array}\right)$. $VW$ is clearly a vector in $\mathbb{R}^3$, so we just need to show that $e^{\Omega}$ is orthogonal. 
+
+Note that $\Omega^T = -\Omega$ and $(\Omega^2)^T = \Omega^2$. Thus we have 
+
+\[ (e^{\Omega})^T = I_3 + \dfrac{\sin \theta}{\theta} \Omega^{-1} + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \]
+
+and so 
+
+\newpage
+
+\[ (e^{\Omega})^T e^{\Omega} = \left(I_3 + \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \right) \left(I_3 - \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \right) \]
+
+\[ = I_3 - \dfrac{\sin^2 \theta}{\theta^2} \Omega^2 + \dfrac{1 - 2\cos \theta + \cos^2 \theta}{\theta^4} (-\theta^2) \Omega^2  + 2\dfrac{1 - \cos \theta}{\theta^2} \Omega^2\]
+
+\[ = I_3 - \dfrac{2 - 2 \cos \theta}{\theta^2} \Omega^2 + \dfrac{2 - 2 \cos \theta}{\theta^2} \Omega^2 = I_3\]
+
+So $(e^{\Omega})^T = (e^{\Omega})^{-1}$; thus it is orthogonal, and so $e^B$ is an affine map. 
+
+Showing that $V$ is invertible and that the inverse is $Z$ is just a matter of multiplying the expression given for $Z$ by $V$ and showing the product is $I$ using elementary algebra and the established identities. 
+
+Since $V$ is invertible, then $V$ acts transitively on $\mathbb{R}^3$, so $VW$ for $W \in \mathbb{R}^3$ can any arbitrary vector by choosing an appropriate $W$. It remains to show that $e^{\Omega}$ is any arbitrary rotation matrix. 
+
+We know that it is a linear transformation, so it is completely determined by its action on the basis vectors of $\mathbb{R}^3$. So let $e^{\Omega} e_1 = v_1, e^{\Omega} e_2 = v_2, e^{\Omega} e_3 = v_3$. 
+
+Now from before we have 
+
+\[ e^{\Omega} = I_3+ \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \]
+
+\subsection{(7)}
+
+\subsubsection{(1)}
+The eigenvalues of $AA^*$ are given by det $(xI_2 - AA^*) = x^2 - $ tr$(AA^*) + $ det$(AA^*)$. Since det$(A) = $ det$(A^*)$ then this $x^2 - $tr$(AA^*) + |$det$(A)|^2$. And so the singular values are the roots of this equation. 
+
+\subsubsection{(2)}
+We have 
+\[AA^* = \left(\begin{array}{cc} a_{11}^2 + a_{12}^2 & a_{11} a_{21} + a_{12} a_{22} \\ a_{11} a_{21} + a_{12} a_{22} & a_{21}^2 + a_{22}^2 \end{array}\right) \]
+
+Now the two roots add to $a_{11}^2 + a_{12}^2 + a_{21}^2 + a_{22}^2$ and multiply to $|a_{11} a_{22} - a_{12} a_{21}|^2$. 
 
 \end{document}
