@@ -535,8 +535,6 @@ Note that $\Omega^T = -\Omega$ and $(\Omega^2)^T = \Omega^2$. Thus we have
 
 and so 
 
-\newpage
-
 \[ (e^{\Omega})^T e^{\Omega} = \left(I_3 + \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \right) \left(I_3 - \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \right) \]
 
 \[ = I_3 - \dfrac{\sin^2 \theta}{\theta^2} \Omega^2 + \dfrac{1 - 2\cos \theta + \cos^2 \theta}{\theta^4} (-\theta^2) \Omega^2  + 2\dfrac{1 - \cos \theta}{\theta^2} \Omega^2\]
@@ -555,7 +553,7 @@ Now from before we have
 
 \[ e^{\Omega} = I_3+ \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \]
 
-\subsection{(7)}
+\subsection{(B7)}
 
 \subsubsection{(1)}
 The eigenvalues of $AA^*$ are given by det $(xI_2 - AA^*) = x^2 - $ tr$(AA^*) + $ det$(AA^*)$. Since det$(A) = $ det$(A^*)$ then this $x^2 - $tr$(AA^*) + |$det$(A)|^2$. And so the singular values are the roots of this equation. 
@@ -615,5 +613,56 @@ And so the solution to the perturbed system is
 \[ \|x\|_2 = \sqrt{2}, \|\delta x \|_2 = 2.8428, \|b\|_2 = 280.0179, \|\delta b\|_2 = 0.0144 \]
 
 \[ c = \dfrac{2.8428}{\sqrt{2}} \dfrac{280.0179}{0.0144} = 39175.3 \approx 39206\]
+
+\subsection{(B8)}
+
+\subsubsection{(a)} The transformation from a basis to itself is just the identity matrix, which has determinant $1 > 0$.
+
+If $U$ changes the basis from $\{u_1,\cdots,u_n\}$ to $\{v_1,\cdots,v_n\}$, then $U^{-1}$ changes the basis back the other way. And if $\det(U) > 0$, then since $\det(U) \det(U^{-1}) = \det(UU^{-1}) = 1 > 0$, we must have $\det(U^{-1}) > 0$. 
+
+Finally if $U,V$ are two change of basis matrices with $\det(U)>0, \det(V)>0$, then $\det(UV)=\det(U)\det(V) > 0 $. So this is an equivalence relation. 
+
+\subsubsection{(b)} Let $X$ be the matrix which changes $B_2$ into $B_1$. Since $X$ is an isomorphism of vector spaces, it must send basis vectors to basis vectors. Furthermore $B_1$ is an orthonormal basis, so these image vectors are orthonormal vectors. Let $\{e_1,\cdots,e_n\}$ be an orthonormal basis for $B_2$. Given two vectors $v_1 = \displaystyle\sum_i \alpha_i e_i$ and $v_2 = \displaystyle\sum_i \beta_i e_i$, we have
+
+\[ <Xv_1, Xv_2> = <\sum_i \alpha_i X e_i, \sum_i \beta_i X e_i> = \sum_i \alpha_i \beta_i < Xe_i, X e_i> = \sum_i \alpha_i \beta_i\]
+
+where we've used orthonormality of $Xe_i$'s to decompose the inner product. But this is equal to 
+
+\[ <v_1, v_2> = \sum_i \alpha_a \beta_i \]
+
+thus $X$ preserves inner products. 
+
+Then for $i\neq j$:
+
+\[ <X e_i, e_j> = <Xe_i, XX^{-1} e_j > = <e_i, X^{-1} e_j> \]
+
+thus $X^{-1} = X^T$, so $X$ is an orthogonal operator. Hence we have $|\det X| = 1$, and since $B_1,B_2$ have the same orientation, $\det X = 1$. 
+
+\[\det_{B_2} (w_1,\cdots,w_n) = \det_{B_1} X(w_1,\cdots,w_n) = \left (\det_{B_1} X\right) \left(\det_{B_1} (w_1,\cdots,w_n)\right) = \det_{B_1} (w_1,\cdots,w_n)\]
+
+and so this is independent of basis. 
+
+\subsubsection{(c)}
+
+We can see that this is a linear map by computing the determinant via cofactor expansion on the last column. 
+
+Now denote by $E_{n-1}$ the vector subspace spanned by $w_1,\cdots,w_{n-1}$. Let $e \in E - E_{n-1}$ be the basis vector spanning the dimension not spanned by $w_1,\cdots,w_{n-1}$. Then for any $x \in E$ we write it as $x = y + ae$ where $y \in E_{n-1}$ and $ae \in E - E_{n-1}$. Then $\lambda(w_1,\cdots,w_{n-1},y) = 0$ since we have $n$ vectors in an $n-1$ dimension space and so they must be linearly dependent. We are left with $\lambda(w_1,\cdots,w_{n-1},ae)$, which is now a function of one variable, namely the coefficient $a$. Furthermore by linearity of $\lambda$ we have 
+
+\[ \lambda(w_1,\cdots,w_{n-1},ae) = a \lambda(w_1,\cdots,w_{n-1},e) \]
+
+so thus 
+
+\[ \lambda(w_1,\cdots,w_{n-1},x) = a \lambda(w_1,\cdots,w_{n-1},e) \]
+
+now we define
+
+\[ w_1 \times \cdots \times w_{n-1} \equiv \lambda(w_1,\cdots,w_{n-1},e) e\]
+
+so we get the desired 
+
+\[ <w_1 \times \cdots \times w_{n-1}, x> = < \lambda(w_1,\cdots,w_{n-1},e) e, x> = \lambda(w_1,\cdots,w_{n-1},e) <e, x> \]
+\[= a \lambda(w_1,\cdots,w_{n-1},e) = \lambda(w_1,\cdots,w_{n-1},x)\]
+
+thus we have existence. Uniqueness follows from the fact that $w_1 \times \cdots \times w_{n-1}$ must be a vector in $E - E_{n-1}$, since if it contained a component of $w_i$, then if we input an $x = w_i$, we would get a zero for $\lambda(w_1,\cdots,w_{n-1},x)$ but something nonzero from the inner product. And then the scalar in front of the vector is clearly unique. 
 
 \end{document}
