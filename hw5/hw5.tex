@@ -564,6 +564,56 @@ The eigenvalues of $AA^*$ are given by det $(xI_2 - AA^*) = x^2 - $ tr$(AA^*) + 
 We have 
 \[AA^* = \left(\begin{array}{cc} a_{11}^2 + a_{12}^2 & a_{11} a_{21} + a_{12} a_{22} \\ a_{11} a_{21} + a_{12} a_{22} & a_{21}^2 + a_{22}^2 \end{array}\right) \]
 
-Now the two roots add to $a_{11}^2 + a_{12}^2 + a_{21}^2 + a_{22}^2$ and multiply to $|a_{11} a_{22} - a_{12} a_{21}|^2$. 
+Now the two roots $\sigma_1, \sigma_2$ add to $a_{11}^2 + a_{12}^2 + a_{21}^2 + a_{22}^2$ and multiply to $|a_{11} a_{22} - a_{12} a_{21}|^2$.  So 
+
+\[ \mu(A) = \dfrac{\sigma_1 + \sigma_2}{2\sqrt{\sigma_1 \sigma_2}} \]
+
+and thus
+
+\[ \sqrt{\mu(A)^2 - 1} = \sqrt{\dfrac{\sigma_1^2 + \sigma_2^2 + 2\sigma_1 \sigma_2}{4 \sigma_1 \sigma_2} - 1} = \sqrt{\dfrac{(\sigma_1 - \sigma_2)^2}{4 \sigma_1 \sigma_2}} = \dfrac{\sigma_1 - \sigma_2}{2\sqrt{\sigma_1 \sigma_2}}\]
+
+\[ \mu(A) + \sqrt{\mu(A)^2 - 1} = \dfrac{\sigma_1}{\sqrt{\sigma_1 \sigma_2}} = \sqrt{\dfrac{\sigma_1}{\sigma_2}} \]
+
+Now the eigenvalues of $A^{-1}$ are the inverses of the eigenvalues of $A$, since if $Av = \lambda v$ for eigenvalue $\lambda$, by the definition of inverse $A^{-1} A v = v$ so $A^{-1} v = \dfrac{1}{\lambda} v$. The spectral norm of $A$ is the larger of the two eigenvalues of $A$, and after inverting the eigenvalues the smaller eigenvalue of $A$ becomes the larger eigenvalue of $A^{-1}$, so thus the condition number is the quotient of the eigenvalues of $A$. Not sure why I get a square root...
+
+\subsubsection{(3)}
+
+\[ \dfrac{d}{d\mu(A)} cond_2(A) = 1 + \dfrac{2 \mu(A)}{\sqrt{\mu(A)^2 - 1}} \]
+
+So if $\mu(A) > 1$ for all $A$ in this set, then $cond_2(A)$ is a monotonically increasing function of $\mu(A)$ and so they share the same maximums. But $\mu(A)$ is unbounded in $S$, so I don't see how this maximum is well defined over all of $S$. We need the additional restriction that $\det(A) \neq 0$. 
+
+For the given $A_m$, 
+
+\[ \mu(A_m) = \dfrac{100^2 + 99^2 + 99^2 + 98^2}{2|100*98 - 99^2|} = 19603; \det(A_m) = (99+1)(99-1) - 99^2 = -1 \]
+
+\[ cond_2(A_m) = 19603 + \sqrt{19603^2 - 1} = 39205.9999745 \approx 39206 \]
+
+\subsubsection{(4)}
+
+The maximum value of the numerator is clearly when each term is 100, which gives $4 * 100^2 = 4 * 10000$. If $|\det(A)| \ge 2$ then $2|a_{11} a_{22} - a_{12} - a_{21}| \ge 4$ and thus $\mu(A) \le \dfrac{4 * 10000}{4} = 10000$. 
+
+Since $\det(A) \neq 0$, then to show that $\mu(A)$ is maximized for $\det(A) = \pm 1$ it is sufficient to exhibit one such matrix with $\mu(A) > 10000$. And we already did ths in part (3). 
+
+Set $n_1 = a_{11}, n_4 = a_{22}, n_2 = a_{12}, n_3 = a_{21}$. Then $|n_1 n_4 - n_2 n_3| = 1$ is the condition that $\det(A) = \pm 1$. $0 \le n_4 \le \cdots \le n_1 \le 100$ is just the condition of $A$ being in the set $S$. Furthermore we know the matrix $A^* = \left(\begin{array}{cc} 100 & 99 \\ 99 & 98 \end{array}\right)$ exists and has the specified $\mu$ value, so to maximize $\mu$ we can just consider matrices which might potentially have greater $\mu$ than that of $A_m$. Since the denominator in the expression of $\mu(A)$ is 2 after we fix the determinant, then if the numerator is less than $39206$, clearly $A_m$ has greater $\mu$ than $A$, so we do not need to consider such matrices when maximizing $\mu$. 
+
+And so $\{100,99,99,98\}$ is the only solution to this system; thus it maximizes $\mu(A)$. 
+
+\subsubsection{(5)} 
+
+All of these matrices have the same entries modulo permutation, so $a_{11}^2 + \cdots + a_{22}^2$ is the same for all of them. Furthermore the have the same determinant modulo $\pm 1$. So they all have the same $\mu$ value. And so the conclusion follows. 
+
+\subsubsection{(6)} 
+
+\[A_m^{-1} = \left(\begin{array}{cc} -98 & 99 \\ 99 & -100 \end{array}\right) \Longrightarrow \left(\begin{array}{c} x_1 \\ x_2 \end{array}\right) = \left(\begin{array}{cc} -98 & 99 \\ 99 & -100 \end{array}\right) \left(\begin{array}{c} 199 \\ 197 \end{array}\right) = \left(\begin{array}{c} 1 \\ 1 \end{array}\right) \]
+
+\[\delta x = \left(\begin{array}{cc} -98 & 99 \\ 99 & -100 \end{array}\right) \left(\begin{array}{c} -0.0097 \\ 0.0106 \end{array}\right) = \left(\begin{array}{c} 2 \\ -2.0203 \end{array}\right) \]
+
+And so the solution to the perturbed system is 
+
+\[ y = \left(\begin{array}{c} 3 \\ -1.0203 \end{array}\right) \]
+
+\[ \|x\|_2 = \sqrt{2}, \|\delta x \|_2 = 2.8428, \|b\|_2 = 280.0179, \|\delta b\|_2 = 0.0144 \]
+
+\[ c = \dfrac{2.8428}{\sqrt{2}} \dfrac{280.0179}{0.0144} = 39175.3 \approx 39206\]
 
 \end{document}
