@@ -470,6 +470,43 @@ and inductively, if the formula holds for $B^{n-1}$, then
 
 \[ B^{n-1} B = \left(\begin{array}{cc} \Omega^n & \Omega^{n-1} \\ 0 & 0 \end{array}\right) \]
 
+Now we have 
+
+\[ e^B = I_4 + \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n!} B^n = I_4 + \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n!} \left(\begin{array}{cc} \Omega^n & \Omega^{n-1}W \\ 0 & 0 \end{array}\right) = \left( \begin{array}{cc} e^{\Omega} & VW \\ 0 & 1 \end{array}\right)\]
+
+with $V$ given by
+
+\[V = \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n!} \Omega^{n-1} = \Omega^0  + \displaystyle\sum_{n=2}^{\infty} \dfrac{1}{n!} \Omega^{n-1} = I_3 + \displaystyle\sum_{k\ge 1} \dfrac{1}{(k+1)!} \Omega^k\]
+
+where we just substitute $k=n-1$ to get the last expression. 
+
+Now suppose $\sqrt{a^2 + b^2 + c^2} = 0$. Then we compute the powers of $\Omega$ to get: 
+
+\[ \Omega^2 = \left(\begin{array}{ccc} -c^2 - b^2 & ab & ac \\ ab & -c^2 - a^2 & bc \\ ac & bc & -b^2 - a^2 \end{array}\right) = \left(\begin{array}{ccc} a^2 & ab & ac \\ ab & b^2 & bc \\ ac & bc & c^2 \end{array}\right) \]
+
+\[ \Omega^3 = \left(\begin{array}{ccc} a^2 & ab & ac \\ ab & b^2 & bc \\ ac & bc & c^2 \end{array}\right) \left(\begin{array}{ccc} 0 & -c & b \\ c & 0 & -a \\ -b & a & 0 \end{array}\right) = \left(\begin{array}{ccc} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{array}\right) \]
+
+Thus all powers $\Omega^n$ with $n > 2$ are 0, so we are left with
+\[ e^{\Omega} = I_3 + \Omega + \dfrac{1}{2} \Omega^2 \]
+
+which should just be $I_3$??
+
+\subsubsection{(d)} 
+
+For general $\theta$, we have
+
+\[\Omega^3 = (a^2 + b^2 + c^2) \left(\begin{array}{ccc} 0 & c & -b \\ -c & 0 & a \\ b & -a & 0 \end{array}\right) = -\theta^2 \Omega \]
+
+\[\Omega^4 = -(a^2 + b^2 + c^2) \Omega^2 = -\theta^2 \Omega^2 \]
+
+\[ \Omega^5 = \theta^4 \Omega\]
+
+and so forth. thus we can break up the exponential according to the parity of the power. We get
+
+\[e^{\Omega} = I_3 + \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{(2n-1)!} (-\theta^2)^{n-1} \Omega + \displaystyle\sum_{n=1}^{\infty} \dfrac{1}{(2n)!} (-\theta^2)^{n-1} \Omega^2\]
+
+and the coefficients of $\Omega, \Omega^2$ are the power series expansions for 
+
 
 
 \end{document}
