@@ -489,7 +489,7 @@ Now suppose $\sqrt{a^2 + b^2 + c^2} = 0$. Then we compute the powers of $\Omega$
 Thus all powers $\Omega^n$ with $n > 2$ are 0, so we are left with
 \[ e^{\Omega} = I_3 + \Omega + \dfrac{1}{2} \Omega^2 \]
 
-which should just be $I_3$??
+which should just be $I_3$?
 
 \subsubsection{(d)} 
 
@@ -552,6 +552,8 @@ We know that it is a linear transformation, so it is completely determined by it
 Now from before we have 
 
 \[ e^{\Omega} = I_3+ \dfrac{\sin \theta}{\theta} \Omega + \dfrac{1 - \cos \theta}{\theta^2} \Omega^2 \]
+
+This is a linear map except for the $\theta$ terms; however we note that the coefficients involving $\theta$ are continuous functions of the parameters. And so this gives is three parameters to vary, and we can just adjust them so that each basis vector is sent to the correct location. 
 
 \subsection{(B7)}
 
@@ -670,6 +672,23 @@ thus we have existence. Uniqueness follows from the fact that $w_1 \times \cdots
 
 \subsubsection{(1)-(2)} Programming.
 
-\subsubsection{(3)} The sequence $A_k$ converges to an upper triangular matrix whose diagonal entries are the eigenvalues of the input $A$. Why? 
+\subsubsection{(3)} The sequence $A_k$ converges to an upper triangular matrix whose diagonal entries are the eigenvalues of the input $A$. For symmetric matrices, this converges to a diagonal matrix whose entries are the eigenvalues.
+
+At each iteration, we change $A_k = Q*R$ to $A_{k+1} = R*Q$. This is equivalent to adding the commutator: 
+
+\[[Q,R] = QR - RQ\]
+
+\[A_k - [Q,R] = A_{k+1} \]
+
+The commutator of a symmetric matrix is symmetric, and by 
+
+
+\[[Q,R]^T = R^TQ^T - Q^TR^T = R^TQ^{-1} - Q^{-1}R^T \]
+
+\[[Q,R] [Q,R]^T = QRR^TQ^{-1} - R^TQ^{-1}RQ - QRQ^{-1}R^T + RQQ^{-1}R^T \]
+
+
+
+
 
 \end{document}
