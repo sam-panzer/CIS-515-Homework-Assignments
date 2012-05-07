@@ -325,8 +325,21 @@ Then, if $\theta = \lambda = 0$, then $\Omega = 0$, so $V = I + \sum_{k=1}^\inft
 \subsubsection{(f)}
 Let $s \in \textbf{SIM}(2)$. Then we can construct a $B \in \mathfrak{sim}(2)$ such that $e^B = s$.
 We set $\lambda = \log(\alpha)$ and $\theta_B = \theta_s$.
-Finally, we just need to show that we can find $u_B, v_B$ such that $ \binom{u_s}{v_s} = VU = \binom{u}{v}$.
-\textbf{TODO!}
+Finally, we just need to show that we can find $u_B, v_B$ such that $ \binom{u_s}{v_s} = VU = V\binom{u_b}{v_b}$.
+This can be done so long as $V$ is not singular.
+Since 
+$\text{det}(V) = \left(\lambda(e^\lambda\cos(\theta) - 1) + e^\lambda \theta \sin(\theta)\right)^2 + 
+ \left(\theta(-e^\lambda\cos(\theta) + 1) + e^\lambda \lambda \sin(\theta)\right)^2 $, we would need both of the squared terms to be zero.
+ This gives \[ \lambda(e^\lambda\cos(\theta) - 1) + e^\lambda \theta \sin(\theta) = 0 \text{ and }
+ \theta(-e^\lambda\cos(\theta) + 1) + e^\lambda \lambda \sin(\theta) = 0 \]
+ We can rewrite these equations as \[ \lambda(e^\lambda\cos(\theta) - 1) = - e^\lambda \theta \sin(\theta) \text{ and }
+ \theta(e^\lambda\cos(\theta) - 1) = e^\lambda \lambda \sin(\theta) \] respectively.
+ Some rearranging (which relies on $\theta, \lambda \neq 0$) gives
+ \[ e^\lambda\cos(\theta) - 1 = -\frac{\theta}{\lambda} e^\lambda \sin(\theta) \text{ and }
+ e^\lambda\cos(\theta) - 1 = \frac{\lambda}{\theta}e^\lambda \sin(\theta) \] respectively.
+ which can only be true when $\theta$ or $\lambda$ is 0.
+ Thus $V$ must not be singular, meaning that there exists some $B$ such that
+ $e^B = s$ by construuction, so $exp$ is surjective.
 
 \subsection{B4}
 \subsubsection{(a)} Checked. (I'm really not sure how to show any work, since the answer is in the assignment.)
@@ -409,6 +422,45 @@ e^{\text{exp}^{-1}(R)}&=&
 I + \frac{\sin(\theta)}{\theta} \frac{\theta}{2\sin(\theta)}(R - R^\top)
 + \frac{1-\cos(\theta)}{\theta^2} \left( \frac{\theta}{2\sin(\theta)}(R - R^\top) \right)^2
 \end{eqnarray*}
+To complete this, we use Theorem 10.13, as generously suggested by Professor Gallier.
+Since $R$ is a rotation matrix, there exist some orthogonal matrix $Q$ and block diagonal matrix $D = \threematrix{\cos(\theta)}{-\sin(\theta)}{0}{\sin(\theta)}{\cos(\theta)}{0}{0}{0}{1}$ such that $R = QDQ^\top$.
+Then \[R - R^\top = QDQ^\top - (QDQ^\top)^\top = QDQ^\top - QD^\top Q^\top
+                  = Q(D - D^\top)Q^\top\]
+Since $D - D^\top = \threematrix{0}{-2\sin(\theta)}{0}{\sin(\theta)}{0}{0}{0}{0}{0}$,
+we also have $(D - D^\top)^2 = -\threematrix{4\sin^2(\theta)}{0}{0}{0}{4\sin^2(\theta)}{0}{0}{0}{0}$.
+Note that $I = QIQ^\top$, so
+\begin{eqnarray*}
+e^{\text{exp}^{-1}(R)}&=& Q\left(
+I + \frac{\sin(\theta)}{\theta} \frac{\theta}{2\sin(\theta)}(D - D^\top)
++ \frac{1-\cos(\theta)}{\theta^2} \left( \frac{\theta}{2\sin(\theta)}(D - D^\top) \right)^2\right)Q^\top\\
+&=& Q\left(I + \threematrix{0}{-\sin(\theta)}{0}{\sin(\theta)}{0}{0}{0}{0}{0}
+- \threematrix{1 - \cos(\theta)}{0}{0}{0}{1-\cos(\theta)}{0}{0}{0}{0}\right)Q^\top\\
+&=& Q\threematrix{\cos(\theta)}{-\sin(\theta)}{0}{\sin(\theta)}{\cos(\theta)}{0}{0}{0}{1} Q^\top
+ = QDQ^\top = R
+\end{eqnarray*}
+
+\noindent (3)
+Using the factoring $R = QDQ^\top$ and the fact that eigenvalues are invariant under change of basis, we can read the eigenvalues of $R$ off of $D$ easily.
+If we know that $-1 = \trace{D} = \cos(\theta) + \cos(\theta) + 1$, then we can easily tell that $\cos(\theta) = -1,$ so $\theta)$ is an odd integer multiple of $\pi$.
+Therefore $\sin(\theta) = 0$ and $\cos(\theta) = 1$, so $D = \threematrix{-1}{0}{0}{0}{-1}{0}{0}{0}{1}$.
+The desired properties of $D$ (its eigenvalues, being symmetrical, and squaring to $I$) can then all be read straight off the matrix!
+Since $Q$ is orthogonal, conjugating by it does not change symmetry or eigenvalues, and $QD^2Q^\top = QIQ^\top = QQ^\top = I$ shows that $R^2 = I$.
+
+Then $S = Q\frac{1}{2}(D - I)Q^\top = Q\threematrix{-1}{0}{0}{0}{-1}{0}{0}{0}{0}Q^\top$, which immediately shows that $S$ is symmetric and is diagonalized by $Q$.
+
+If we now consider $U$ as defined in the problem, we find that a $U^2=S$ has a solution by part (e), so such a $U$ must exist!
+
+If $U^2 = S$, then the trace of $U^2$ should equal the trace of $S$, giving us 
+$-2(b^2 + c^2 + d^2) = -2$, or $b^2 + c^2 + d^2 = 1$.
+Finally, we note that, as $\theta$ was defined in the beginning of this question, $\theta = (2k+1)\pi \sqrt{b^2 + c^2 + d^2} = (2k+1)\pi\sqrt{1} = (2k+1)\pi$. So,
+\begin{eqnarray*}
+  exp(exp^{-1}(R)) &=&  I + \frac{\sin(\theta)}{\theta}(\theta U) + \frac{1-\cos(\theta)}{\theta^2} (\theta U)^2\\
+  &=&  I + 0 + \frac{2}{\theta^2}(\theta^2 U^2) \\
+  &=&  I + 2\frac{1}{2}(R - I) = R
+\end{eqnarray*}
+as desired.
+\subsubsection{(e)}
+This part submitted as a program.
 
 \subsection{(B6)}
 
